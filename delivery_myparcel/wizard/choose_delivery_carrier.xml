@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="choose_delivery_carrier_view_form" model="ir.ui.view">
+        <field name="name">choose.delivery.carrier.myparcel</field>
+        <field name="model">choose.delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.choose_delivery_carrier_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='carrier_id']" position="after">
+                <field name="x_aa_mp_age_control"
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+                <field name="x_aa_mp_signing"
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+<!--                       readonly="delivery_type in ['myparcel_dhl_connect', 'myparcel_dhl_europlus']"-->
+                <field name="x_aa_mp_only_receiver"
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+                <field name="x_aa_mp_hide_sender" invisible="delivery_type not in ['myparcel_dhl_fy', 'myparcel_dhl_europlus']"/>
+                <field name="x_aa_mp_allow_sameday_delivery" invisible="1"/>
+<!--                <field name="x_aa_mp_direct_return"-->
+<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>-->
+<!--                <field name="x_aa_mp_home_delivery"-->
+<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy', 'myparcel_dpd']"/>-->
+<!--                <field name="x_aa_mp_insurance"-->
+<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy']"/>-->
+<!--                <div name="insurance" invisible="x_aa_mp_insurance == False">-->
+<!--                    <label for="x_aa_mp_insurance_amount" class="oe_inline"/>-->
+<!--                    <field name="x_aa_mp_insurance_amount" class="oe_inline" invisible="x_aa_mp_insurance == False"/>-->
+<!--                    <field name="currency_id" readonly="1" class="oe_inline" options="{'no_open': 1}"/>-->
+<!--                </div>-->
+<!--                <field name="x_aa_mp_delivery_time" invisible="'myparcel' not in delivery_type"/>-->
+            </xpath>
+            <xpath expr="//div[hasclass('alert', 'alert-warning')]" position="after">
+                <div role="alert" class="alert alert-warning" invisible="carrier_message == ''">
+                    <field name="carrier_message" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

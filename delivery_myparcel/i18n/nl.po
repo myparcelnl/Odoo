@@ -1,0 +1,742 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_myparcel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-24 11:51+0000\n"
+"PO-Revision-Date: 2025-06-24 11:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__10000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__10000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__10000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__10000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__10000
+msgid "100"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__100000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__100000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__100000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__100000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__100000
+msgid "1000"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__150000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__150000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__150000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__150000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__150000
+msgid "1500"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__200000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__200000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__200000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__200000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__200000
+msgid "2000"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__25000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__25000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__25000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__25000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__25000
+msgid "250"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__250000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__250000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__250000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__250000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__250000
+msgid "2500"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__300000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__300000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__300000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__300000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__300000
+msgid "3000"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__350000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__350000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__350000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__350000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__350000
+msgid "3500"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__400000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__400000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__400000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__400000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__400000
+msgid "4000"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__450000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__450000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__450000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__450000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__450000
+msgid "4500"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__50000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__50000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__50000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__50000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__50000
+msgid "500"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__500000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__500000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__500000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__500000
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__500000
+msgid "5000"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_api_key
+msgid "API Key"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_insurance
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_insurance
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_insurance
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_insurance
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_insurance
+msgid "Activate Insurance"
+msgstr "Activeer Verzekering"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_email_send_with_shipment
+msgid "Add Email to Shipment"
+msgstr "Emailadres meesturen bij Verzending"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_phone_send_with_shipment
+msgid "Add Phone to Shipment"
+msgstr "Telefoonnummer meesturen bij Verzending"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_dhl_fy.py:0
+msgid ""
+"Age Check and Receiver Only cannot be used together. Please choose one of "
+"them."
+msgstr ""
+"Leeftijdscontrole en Allen Ontvanger kunnen niet tegelijk gebruikt worden. Kies a.u.b. één van de twee."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_age_control
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_age_control
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_age_control
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_age_control
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_age_control
+msgid "Age Verification (18+)"
+msgstr "Leeftijdscontrole (18+)"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_age_control_price
+msgid "Age Verification Price (18+)"
+msgstr "Leeftijdscontrole Prijs (18+)"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_delivery_time
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_delivery_time
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_delivery_time
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_delivery_time
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_delivery_time
+msgid "Bezorgtijd"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_position__bottom_left
+msgid "Bottom Left"
+msgstr "Links Onder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_position__bottom_right
+msgid "Bottom Right"
+msgstr "Rechts Onder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_package_type__package_carrier_type
+msgid "Carrier"
+msgstr "Vervoerder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__carrier_message
+msgid "Carrier Message"
+msgstr "Vervoerder bericht"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_selected_carrier
+msgid "Carrier Type"
+msgstr "MyParcel Vervoerder"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_europlus
+msgid "Carrier settings: DHL Europlus"
+msgstr "Vervoerder instellingen: DHL Europlus"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_fy
+msgid "Carrier settings: DHL For You"
+msgstr "Vervoerder instellingen: DHL For You"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_order_options
+msgid "Checkout settings should be here"
+msgstr ""
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid "Could not find API URL for this request."
+msgstr "Geen API URL gevonden voor deze aanvraag."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_choose_delivery_carrier
+msgid "Delivery Carrier Selection Wizard"
+msgstr "Vervoerder selectie wizard"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_direct_label
+msgid "Direct Label"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_direct_return
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_direct_return
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_direct_return
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_direct_return
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_direct_return
+msgid "Direct Return"
+msgstr "Direct Retour"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_direct_return_price
+msgid "Direct Return Price"
+msgstr "Direct Retour Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_delivery_price__dynamic
+msgid "Dynamic pricing"
+msgstr "Dynamische prijsstelling"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
+msgid ""
+"Error: this delivery method is not available as no shipment ID was found. "
+"This could be caused by a wrong address or wrong delivery options. Check "
+"again to make sure there is no wrong input."
+msgstr ""
+"Error: deze verzendmethode is niet beschikbaar. Er kon geen shipment ID gevonden worden. "
+"Dit kan veroorzaakt worden door een fout adres, of door foute instellingen. Controleer "
+"a.u.b. opnieuw of er geen foute invoer is."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
+msgid "Error: this delivery method is not available."
+msgstr "Error: Deze verzendmethode is niet beschikbaar."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_evening_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_evening_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_evening_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_evening_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_evening_delivery
+msgid "Evening Delivery"
+msgstr "Avondbezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_evening_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_evening_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_evening_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_evening_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_evening_delivery_price
+msgid "Evening Delivery Price"
+msgstr "Avondbezorging Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_delivery_price__fixed
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+msgid "Fixed Price"
+msgstr "Vaste Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_fixed_price
+msgid "Fixed Price (MyParcel)"
+msgstr "Vaste Prijs (MyParcel)"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+msgid "General settings"
+msgstr "Algemene instellingen"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_hide_sender
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_hide_sender
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_hide_sender
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_hide_sender
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_hide_sender
+msgid "Hide Sender"
+msgstr "Verberg Afzender"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_home_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_home_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_home_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_home_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_home_delivery
+msgid "Home delivery"
+msgstr "Thuisbezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,help:delivery_myparcel.field_delivery_carrier__x_aa_mp_direct_label
+msgid "If enabled, the label will be printed directly without confirmation."
+msgstr "Als deze instelling is aangevinkt, wordt de label direct gegenereerd bij het bevestigen van een levering."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_insurance_amount
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_insurance_amount
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_insurance_amount
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_insurance_amount
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_insurance_amount
+msgid "Insured amount"
+msgstr "Verzekerde waarde"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_is_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_is_myparcel
+msgid "Is MyParcel Carrier"
+msgstr "Is het een MyParcel vervoeder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_is_sendmyparcel
+msgid "Is SendMyParcel Carrier"
+msgstr "Is het een SendMyParcel vervoeder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_label_url
+msgid "Label URL"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_label_position
+msgid "Label position"
+msgstr "Label Positie"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+msgid "Label settings"
+msgstr "Label instellingen"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_label_size
+msgid "Label size"
+msgstr "Label grootte"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_size__a6
+msgid "Labelprinter (A6)"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_large_package
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_large_package
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_large_package
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_large_package
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_large_package
+msgid "Larger than 100x70x58 cm"
+msgstr "Groter dan 100x70x58 cm"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_large_package_price
+msgid "Larger than 100x70x58 cm Price"
+msgstr "Groter dan 100x70x58 cm Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_monday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_monday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_monday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_monday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_monday_delivery
+msgid "Monday Delivery"
+msgstr "Maandagbezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_monday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_monday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_monday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_monday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_monday_delivery_price
+msgid "Monday Delivery Price"
+msgstr "Maandagbezorging Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_morning_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_morning_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_morning_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_morning_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_morning_delivery
+msgid "Morning Delivery"
+msgstr "Ochtendlevering"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_morning_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_morning_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_morning_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_morning_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_morning_delivery_price
+msgid "Morning Delivery Price"
+msgstr "Ochtendlevering Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_package_type__package_carrier_type__myparcel
+msgid "MyParcel"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_dhl_europlus
+msgid "MyParcel - DHL Europlus"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_dhl_fy
+msgid "MyParcel - DHL For You"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+msgid "MyParcel API CHECK"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_order_form_inherit_myparcel
+msgid "MyParcel Carrier Settings"
+msgstr "MyParcel Vervoerder Instellingen"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_myparcel_mixin
+msgid "MyParcel Mixin"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:product.template,name:delivery_myparcel.product_product_delivery_myparcel_product_template
+msgid "MyParcel Package"
+msgstr "MyParcel Pakket"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_order_form_inherit_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_stock_picking_form_inherit_myparcel
+msgid "MyParcel Settings"
+msgstr "MyParcel Instellingen"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_shipping_id
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_shipping_id
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_shipping_id
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_shipping_id
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_shipping_id
+msgid "MyParcel Shipment ID"
+msgstr "MyParcel Shipment ID"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
+msgid "No MyParcel shipment ID found for this picking."
+msgstr "Geen MyParcel shipment ID gevonden voor deze picking."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_ordermodus
+msgid "Order Mode"
+msgstr "Ordermodus"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_overige_settings
+msgid "Other settings should be here"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_package_collection_carrier
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_package_collection_carrier
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_package_collection_carrier
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_package_collection_carrier
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_package_collection_carrier
+msgid "Package Collect by Carrier"
+msgstr "Pakket laten ophalen door Vervoerder"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_package_type
+msgid "Package type dropdown should be here"
+msgstr ""
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/sale.py:0
+msgid "Please set a future delivery date for the order."
+msgstr "Vul a.u.b. een toekomstige datum in voor deze order."
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel
+msgid "Pricing"
+msgstr "Prijsstelling"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_delivery_price
+msgid "Pricing method"
+msgstr "Prijsstelling methode"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_receiving_code
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_receiving_code
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_receiving_code
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_receiving_code
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_receiving_code
+msgid "Receipt Code"
+msgstr "Ontvangstcode"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_only_receiver
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_only_receiver
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_only_receiver
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_only_receiver
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_only_receiver
+msgid "Receiver Only"
+msgstr "Alleen Ontvanger"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_only_receiver_price
+msgid "Receiver Only Price"
+msgstr "Alleen Ontvanger Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_signing
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_signing
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_signing
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_signing
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_signing
+msgid "Require Signature"
+msgstr "Handtekening"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/wizard/choose_delivery_carrier.py:0
+msgid "Same day delivery is available for this delivery."
+msgstr "Zelfde dag levering staat aan voor deze levering."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/wizard/choose_delivery_carrier.py:0
+msgid "Same day delivery is not available for this delivery."
+msgstr "Zelfde dag levering staat uit voor deze levering."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_sameday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_sameday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_sameday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_sameday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_sameday_delivery
+msgid "Same-day Delivery"
+msgstr "Zelfde Dag Bezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_sameday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_sameday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_sameday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_sameday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_sameday_delivery_price
+msgid "Same-day Delivery Price"
+msgstr "Zelfde Dag Bezorging Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_saturday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_saturday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_saturday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_saturday_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_saturday_delivery
+msgid "Saturday Delivery"
+msgstr "Zaterdagbezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_saturday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_saturday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_saturday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_saturday_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_saturday_delivery_price
+msgid "Saturday Delivery Price"
+msgstr "Zaterdagbezorging prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,help:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_delivery_time
+#: model:ir.model.fields,help:delivery_myparcel.field_delivery_carrier__x_aa_mp_delivery_time
+#: model:ir.model.fields,help:delivery_myparcel.field_myparcel_mixin__x_aa_mp_delivery_time
+#: model:ir.model.fields,help:delivery_myparcel.field_sale_order__x_aa_mp_delivery_time
+#: model:ir.model.fields,help:delivery_myparcel.field_stock_picking__x_aa_mp_delivery_time
+msgid ""
+"Selecteer de bezorgtijd op basis van de beschikbare opties voor de "
+"vervoerder."
+msgstr ""
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
+msgid ""
+"Shipment created into MyParcel<br/><b>Tracking Links:</b> "
+"%(tracking_numbers)s<br/>"
+msgstr ""
+"Zending gecreëerd in MyParcel.<br/><b>Tracking Links:</b> "
+"%(tracking_numbers)s<br/>"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Verzendmethoden"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_signing_price
+msgid "Signature Price"
+msgstr "Handtekening Prijs"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/wizard/choose_delivery_carrier.py:0
+msgid "Signature is always required for Europlus deliveries."
+msgstr "Handtekening is altijd vereist voor Europlus leveringen."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_standard_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_standard_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_standard_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_allow_standard_delivery
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_allow_standard_delivery
+msgid "Standard Delivery"
+msgstr "Standaard Bezorging"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_standard_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_standard_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_standard_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_standard_delivery_price
+#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_standard_delivery_price
+msgid "Standard Delivery Price"
+msgstr "Standaard Bezorging Prijs"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_size__a4
+msgid "Standard Printer (A4)"
+msgstr "Standaard printer (A4)"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_stock_move
+msgid "Stock Move"
+msgstr "Voorraadverplaatsing"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_stock_package_type
+msgid "Stock package type"
+msgstr "Verpakkingssoort"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid "Street number not found in street field. Please check the address."
+msgstr "Huisnummer niet gevonden in het straat-veld. Controleer het adres a.u.b."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,help:delivery_myparcel.field_stock_picking__x_aa_mp_label_url
+msgid "The URL of the label for the shipment."
+msgstr "URL van het label voor de verzending."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields,help:delivery_myparcel.field_delivery_carrier__x_aa_mp_fixed_price
+msgid "The fixed price for the delivery method."
+msgstr "Vaste prijs voor de leveringsmethode."
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_position__top_left
+msgid "Top Left"
+msgstr "Links Boven"
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_label_position__top_right
+msgid "Top Right"
+msgstr "Rechts Boven"
+
+#. module: delivery_myparcel
+#: model:ir.model,name:delivery_myparcel.model_stock_picking
+msgid "Transfer"
+msgstr "Verplaatsing"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_mixin.py:0
+msgid "Unrecognised carrier while getting carrier code."
+msgstr "Vervoeder niet herkend bij het ophalen van de vervoerder code."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_mixin.py:0
+msgid "Unrecognised carrier while getting delivery code."
+msgstr "Vervoerder niet herkend bij het ophalen van de leveringscode."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_mixin.py:0
+msgid "Unrecognised label position while getting label position code."
+msgstr "Label positie niet herkend bij het ophalen van de label positie code."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
+msgid "error_message"
+msgstr ""
