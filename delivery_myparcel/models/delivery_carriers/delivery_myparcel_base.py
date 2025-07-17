@@ -114,8 +114,11 @@ class BaseProviderMyParcel(models.Model):
                 'warning_message': False,
             }
 
+    def get_myparcel_request(self, carrier_id, module_version):
+        return MyParcelRequest(carrier_id=carrier_id, module_version=module_version)
+
     def myparcel_get_shipping_rate(self, record, options=None, delivery_type=False):
-        myparcel_request = MyParcelRequest(carrier_id=self, module_version=self.get_module_version())
+        myparcel_request = self.get_myparcel_request(carrier_id=self, module_version=self.get_module_version())
         # Add shipment
         result = myparcel_request.add_shipping(record, options, self._get_carrier_code(delivery_type=delivery_type),
                                                recipient=record.partner_shipping_id)
@@ -164,7 +167,7 @@ class BaseProviderMyParcel(models.Model):
         _logger.warning(F'In API fetch function')
         if not self.x_aa_mp_api_key:
             raise UserError("API key is missing.")
-        myparcel_request = MyParcelRequest(carrier_id=self, module_version=self.get_module_version())
+        myparcel_request = self.get_myparcel_request(carrier_id=self, module_version=self.get_module_version())
         response_check = myparcel_request.custom_request()
         json_response = response_check.json()
         _logger.warning(F'response check {response_check.json()}')
@@ -193,7 +196,7 @@ class BaseProviderMyParcel(models.Model):
 
     def base_myparcel_send_shipping(self, pickings, options=None, delivery_type=False):
         res = []
-        myparcel_request = MyParcelRequest(carrier_id=self, module_version=self.get_module_version())
+        myparcel_request = self.get_myparcel_request(carrier_id=self, module_version=self.get_module_version())
         _logger.warning(F'delivery_type {delivery_type}')
         if not pickings.x_aa_mp_shipping_id:
             result = myparcel_request.add_shipping(pickings, options,
@@ -270,7 +273,7 @@ class BaseProviderMyParcel(models.Model):
         else:
             if picking.x_aa_mp_shipping_id:
                 res = []
-                myparcel_request = MyParcelRequest(carrier_id=self, module_version=self.get_module_version())
+                myparcel_request = self.get_myparcel_request(carrier_id=self, module_version=self.get_module_version())
                 shipment_label = myparcel_request.get_label(picking.x_aa_mp_shipping_id,
                                                             picking.carrier_id.x_aa_mp_label_size,
                                                             picking.carrier_id._get_label_position_code(
@@ -321,7 +324,7 @@ class BaseProviderMyParcel(models.Model):
     def base_myparcel_cancel_shipment(self, picking):
         if picking.x_aa_mp_shipping_id:
             _logger.warning(F'delete shipment {picking.x_aa_mp_shipping_id}')
-            myparcel_request = MyParcelRequest(carrier_id=self, module_version=self.get_module_version())
+            myparcel_request = self.get_myparcel_request(carrier_id=self, module_version=self.get_module_version())
             result = myparcel_request.delete_shipment(picking.x_aa_mp_shipping_id)
             _logger.warning(F'delete shipment {result}')
         else:

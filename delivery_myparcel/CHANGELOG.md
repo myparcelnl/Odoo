@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 
 * The module is currently still in development. New features/carriers are actively being implemented.
 
+## 2025-07-17 (18.0.0.1.3)
+
+### Updated
+
+* Move instantiation of MyParcelRequest class to separate function, to allow for easier overriding.
+
 ## 2025-06-25 (18.0.0.1.2)
 
 ### Fixed

@@ -20,7 +20,7 @@
     
     """,
     'category': 'Inventory/Delivery',
-    'version': '0.1.2',
+    'version': '0.1.3',
     'author': 'Aardug, MyParcel',
     'website': 'https://www.myparcel.nl/',
     'support': 'helpdesk@aardug.eu',
