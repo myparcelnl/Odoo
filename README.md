@@ -1,0 +1,1 @@
+# MyParcel - Odoo Shipping Connector
