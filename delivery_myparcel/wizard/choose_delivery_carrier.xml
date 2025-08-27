@@ -7,17 +7,29 @@
         <field name="inherit_id" ref="delivery.choose_delivery_carrier_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='carrier_id']" position="after">
+                <field name="commitment_date"
+                       invisible="delivery_type not in ['myparcel_postnl']"
+                       required="delivery_type in ['myparcel_postnl']"/>
                 <field name="x_aa_mp_age_control"
-                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy']"/>
                 <field name="x_aa_mp_signing"
-                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy', 'myparcel_dhl_europlus', 'myparcel_gls']"/>
                 <field name="x_aa_mp_only_receiver"
-                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy']"/>
                 <field name="x_aa_mp_receiving_code"
                        invisible="delivery_type not in ['myparcel_postnl']"/>
-                <field name="x_aa_mp_hide_sender" invisible="delivery_type not in ['myparcel_dhl_fy', 'myparcel_dhl_europlus']"/>
-                <label for="x_aa_mp_insurance" invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus']"/>
-                <div name="x_aa_mp_insurance" invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus']">
+                <field name="x_aa_mp_large_package"
+                       invisible="delivery_type not in ['myparcel_postnl']"/>
+                <field name="x_aa_mp_direct_return"
+                       invisible="delivery_type not in ['myparcel_postnl']"/>
+                <!--                <field name="x_aa_mp_direct_return"-->
+                <!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_dpd']"/>-->
+                <field name="x_aa_mp_hide_sender"
+                       invisible="delivery_type not in ['myparcel_dhl_fy', 'myparcel_dhl_europlus']"/>
+                <label for="x_aa_mp_insurance"
+                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard', 'myparcel_ups_express']"/>
+                <div name="x_aa_mp_insurance"
+                     invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard', 'myparcel_ups_express']">
                     <field name="x_aa_mp_insurance"/>
                     <span invisible="x_aa_mp_insurance == False" class="oe_inline">
                         (<label for="x_aa_mp_insurance_pricelist_id"/>
@@ -31,18 +43,16 @@
                     </span>
                 </div>
                 <field name="x_aa_mp_allow_sameday_delivery" invisible="1"/>
-<!--                <field name="x_aa_mp_direct_return"-->
-<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"/>-->
-<!--                <field name="x_aa_mp_home_delivery"-->
-<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy', 'myparcel_dpd']"/>-->
-<!--                <field name="x_aa_mp_insurance"-->
-<!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy']"/>-->
-<!--                <div name="insurance" invisible="x_aa_mp_insurance == False">-->
-<!--                    <label for="x_aa_mp_insurance_amount" class="oe_inline"/>-->
-<!--                    <field name="x_aa_mp_insurance_amount" class="oe_inline" invisible="x_aa_mp_insurance == False"/>-->
-<!--                    <field name="currency_id" readonly="1" class="oe_inline" options="{'no_open': 1}"/>-->
-<!--                </div>-->
-<!--                <field name="x_aa_mp_delivery_time" invisible="'myparcel' not in delivery_type"/>-->
+                <!--                <field name="x_aa_mp_home_delivery"-->
+                <!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_dhl_fy', 'myparcel_dpd']"/>-->
+                <!--                <field name="x_aa_mp_insurance"-->
+                <!--                       invisible="delivery_type not in ['myparcel_postnl', 'myparcel_dhl_fy']"/>-->
+                <!--                <div name="insurance" invisible="x_aa_mp_insurance == False">-->
+                <!--                    <label for="x_aa_mp_insurance_amount" class="oe_inline"/>-->
+                <!--                    <field name="x_aa_mp_insurance_amount" class="oe_inline" invisible="x_aa_mp_insurance == False"/>-->
+                <!--                    <field name="currency_id" readonly="1" class="oe_inline" options="{'no_open': 1}"/>-->
+                <!--                </div>-->
+                <!--                <field name="x_aa_mp_delivery_time" invisible="'myparcel' not in delivery_type"/>-->
             </xpath>
             <xpath expr="//div[hasclass('alert', 'alert-warning')]" position="after">
                 <div role="alert" class="alert alert-warning" invisible="carrier_message == ''">

@@ -17,52 +17,58 @@
                                 <field name="carrier_id" readonly="1"/>
                                 <field name="x_aa_mp_selected_carrier" invisible="1"/>
                                 <field name="x_aa_mp_age_control"
-                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy']"
                                        readonly="1"/>
                                 <field name="x_aa_mp_signing"
-                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy', 'myparcel_dhl_europlus']"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy', 'myparcel_dhl_europlus', 'myparcel_gls']"
                                        readonly="1"/>
                                 <field name="x_aa_mp_only_receiver"
-                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy']"
                                        readonly="1"/>
                                 <field name="x_aa_mp_receiving_code"
                                        invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl']"
                                        readonly="1"/>
+                                <field name="x_aa_mp_large_package"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl']"
+                                       readonly="1"/>
+                                <field name="x_aa_mp_direct_return"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl']"
+                                       readonly="1"/>
+                                <!--                                <field name="x_aa_mp_direct_return"-->
+                                <!--                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_dpd']"-->
+                                <!--                                       readonly="1"/>-->
                                 <field name="x_aa_mp_hide_sender"
                                        invisible="x_aa_mp_selected_carrier not in ['myparcel_dhl_fy', 'myparcel_dhl_europlus']"
                                        readonly="1"/>
-                                <label for="x_aa_mp_insurance" invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus']"/>
-                                <div name="x_aa_mp_insurance" invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus']">
+                                <label for="x_aa_mp_insurance"
+                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard', 'myparcel_ups_express']"/>
+                                <div name="x_aa_mp_insurance"
+                                     invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard', 'myparcel_ups_express']">
                                     <field name="x_aa_mp_insurance" readonly="1"/>
                                     <span invisible="x_aa_mp_insurance == False" class="oe_inline">
                                         (<label for="x_aa_mp_insurance_pricelist_id"/>
                                         <field name="x_aa_mp_insurance_pricelist_id"
                                                class="oe_inline"
                                                readonly="1"/>
-                                        <field name="currency_id" readonly="1" class="oe_inline" options="{'no_open': 1}"/>)
+                                        <field name="currency_id" readonly="1" class="oe_inline"
+                                               options="{'no_open': 1}"/>)
                                     </span>
                                 </div>
                                 <field name="x_aa_mp_allow_sameday_delivery"
                                        invisible="x_aa_mp_selected_carrier not in ['myparcel_dhl_fy']"
                                        readonly="1"/>
-<!--                                <field name="x_aa_mp_receiving_code"-->
-<!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_postnl'"-->
-<!--                                       readonly="1"/>-->
-<!--                                <field name="x_aa_mp_large_package"-->
-<!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_postnl'" -->
-<!--                                       readonly="1"/>-->
-<!--                                <field name="x_aa_mp_direct_return"-->
-<!--                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dhl_fy']"-->
-<!--                                       readonly="1"/>-->
-<!--                                <field name="x_aa_mp_insurance"-->
-<!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_postnl'"-->
-<!--                                       readonly="1"/>-->
-<!--                                <field name="x_aa_mp_package_collection_carrier"-->
-<!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_ups'"-->
-<!--                                       readonly="1"/>-->
-<!--                                <field name="x_aa_mp_home_delivery"-->
-<!--                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups', 'myparcel_dpd']"-->
-<!--                                       readonly="1"/>-->
+                                <!--                                <field name="x_aa_mp_receiving_code"-->
+                                <!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_postnl'"-->
+                                <!--                                       readonly="1"/>-->
+                                <!--                                <field name="x_aa_mp_insurance"-->
+                                <!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_postnl'"-->
+                                <!--                                       readonly="1"/>-->
+                                <!--                                <field name="x_aa_mp_package_collection_carrier"-->
+                                <!--                                       invisible="x_aa_mp_selected_carrier != 'myparcel_ups_standard'"-->
+                                <!--                                       readonly="1"/>-->
+                                <!--                                <field name="x_aa_mp_home_delivery"-->
+                                <!--                                       invisible="x_aa_mp_selected_carrier not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_dpd']"-->
+                                <!--                                       readonly="1"/>-->
                             </group>
                         </group>
                     </page>

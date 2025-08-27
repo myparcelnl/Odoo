@@ -17,12 +17,15 @@
     - DHL Europlus
     - DHL Parcel Connect
     - PostNL
+    - DPD
+    - UPS Standard
+    - UPS Express Saver
     
     Currently Integrated (SendMyParcel):
     
     """,
     'category': 'Inventory/Delivery',
-    'version': '0.2.0',
+    'version': '0.3.0',
     'author': 'Aardug, MyParcel',
     'website': 'https://www.myparcel.nl/',
     'support': 'helpdesk@aardug.eu',
@@ -34,6 +37,10 @@
         'data/delivery_data/delivery_data_dhl_connect.xml',
         'data/delivery_data/delivery_data_dhl_europlus.xml',
         'data/delivery_data/delivery_data_postnl.xml',
+        'data/delivery_data/delivery_data_dpd.xml',
+        'data/delivery_data/delivery_data_ups_standard.xml',
+        'data/delivery_data/delivery_data_ups_express.xml',
+        # 'data/delivery_data/delivery_data_gls.xml',
         'wizard/choose_delivery_carrier.xml',
         'wizard/choose_delivery_package_views.xml',
         'views/carrier_views/delivery_carrier_views.xml',
@@ -42,7 +49,9 @@
         'views/carrier_views/delivery_carrier_dhl_connect_views.xml',
         'views/carrier_views/delivery_carrier_dhl_europlus_views.xml',
         'views/carrier_views/delivery_carrier_dpd_views.xml',
-        'views/carrier_views/delivery_carrier_ups_views.xml',
+        'views/carrier_views/delivery_carrier_ups_standard_views.xml',
+        'views/carrier_views/delivery_carrier_ups_express_views.xml',
+        # 'views/carrier_views/delivery_carrier_gls_views.xml',
         'views/stock_picking_views.xml',
         'views/sale_order_views.xml',
     ],

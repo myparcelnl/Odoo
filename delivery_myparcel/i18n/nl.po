@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e-20250516\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 08:40+0000\n"
-"PO-Revision-Date: 2025-07-17 08:40+0000\n"
+"POT-Creation-Date: 2025-08-20 11:52+0000\n"
+"PO-Revision-Date: 2025-08-20 11:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,16 @@ msgid "5000"
 msgstr ""
 
 #. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__choose_delivery_carrier__x_aa_mp_insurance_amount__8500
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__x_aa_mp_insurance_amount__8500
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__myparcel_mixin__x_aa_mp_insurance_amount__8500
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__sale_order__x_aa_mp_insurance_amount__8500
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_move__x_aa_mp_insurance_amount__8500
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_picking__x_aa_mp_insurance_amount__8500
+msgid "85"
+msgstr ""
+
+#. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_api_key
 msgid "API Key"
 msgstr ""
@@ -144,7 +154,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/delivery_myparcel/models/myparcel_request.py:0
 msgid "Access Denied. Please check your API key and permissions."
-msgstr "Geen toegang. Controleer a.u.b. uw API key en rechten."
+msgstr "Geen toegang. Controleer uw API key en rechten."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_insurance
@@ -175,7 +185,7 @@ msgid ""
 "them."
 msgstr ""
 "Leeftijdscontrole en Allen Ontvanger kunnen niet tegelijk gebruikt worden. "
-"Kies a.u.b. één van de twee."
+"Kies één van de twee."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_age_control
@@ -246,22 +256,27 @@ msgstr "Vervoerder instellingen: DHL For You"
 #. module: delivery_myparcel
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_connect
 msgid "Carrier settings: DHL connect"
-msgstr ""
+msgstr "Vervoerder instellingen: DHL connect"
 
 #. module: delivery_myparcel
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dpd
 msgid "Carrier settings: DPD"
-msgstr ""
+msgstr "Vervoerder instellingen: DPD"
 
 #. module: delivery_myparcel
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_postnl
 msgid "Carrier settings: PostNL"
-msgstr ""
+msgstr "Vervoerder instellingen: PostNL"
 
 #. module: delivery_myparcel
-#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups
-msgid "Carrier settings: UPS"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_express
+msgid "Carrier settings: UPS Express Saver"
+msgstr "Vervoerder instellingen: UPS Express Saver"
+
+#. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_standard
+msgid "Carrier settings: UPS Standard"
+msgstr "Vervoerder instellingen: UPS Standard"
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_order_options
@@ -273,14 +288,26 @@ msgstr ""
 #: code:addons/delivery_myparcel/models/myparcel_request.py:0
 msgid ""
 "City is required for creating a shipment. Please check the delivery address."
-msgstr "Staat is verplicht voor het aanmaken van een verzending. Controleer het afleveradres."
+msgstr ""
+"Staat is verplicht voor het aanmaken van een verzending. Controleer het "
+"afleveradres."
 
 #. module: delivery_myparcel
 #. odoo-python
 #: code:addons/delivery_myparcel/models/myparcel_request.py:0
 msgid ""
 "Company name is required for creating a shipment. Please check the contact."
-msgstr "Bedrijfsnaam is verplicht voor het aanmaken van een verzending. Controleer de contactpersoon."
+msgstr ""
+"Bedrijfsnaam is verplicht voor het aanmaken van een verzending. Controleer "
+"de contactpersoon."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid ""
+"Complete adress is required for creating a shipment. Please check the "
+"delivery address."
+msgstr "Compleet adres is verplicht voor het aanmaken van een verzending. Controleer het afleveradres."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -288,7 +315,9 @@ msgstr "Bedrijfsnaam is verplicht voor het aanmaken van een verzending. Controle
 msgid ""
 "Correct contact information is required for creating a shipment. Please "
 "check the delivery address."
-msgstr "Correcte contactinformatie is verplicht voor het aanmaken van een verzending. Controleer het afleveradres."
+msgstr ""
+"Correcte contactinformatie is verplicht voor het aanmaken van een "
+"verzending. Controleer het afleveradres."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -302,7 +331,9 @@ msgstr "Geen API URL gevonden voor deze aanvraag."
 msgid ""
 "Country code is required for creating a shipment. Please check the delivery "
 "address."
-msgstr "Landcode is verplicht voor het aanmaken van een verzending. Controleer het afleveradres."
+msgstr ""
+"Landcode is verplicht voor het aanmaken van een verzending. Controleer het "
+"afleveradres."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_insurance_price__create_uid
@@ -317,7 +348,12 @@ msgstr ""
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_insurance_price__currency_id
 #: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__currency_id
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_connect
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_europlus
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_fy
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_postnl
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_express
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_standard
 msgid "Currency"
 msgstr "Valuta"
 
@@ -328,7 +364,6 @@ msgstr "Vervoerder selectie wizard"
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_sale_order__x_aa_mp_insurance_pricelist_id
-#: model:ir.model.fields,field_description:delivery_myparcel.field_stock_move__x_aa_mp_insurance_pricelist_id
 #: model:ir.model.fields,field_description:delivery_myparcel.field_stock_picking__x_aa_mp_insurance_pricelist_id
 msgid "Delivery Insurance Price"
 msgstr "Verzend Verzekering Prijs"
@@ -374,7 +409,9 @@ msgstr "Dynamische prijsstelling"
 msgid ""
 "Email address is required for creating a shipment. Please check the delivery"
 " address."
-msgstr "Emailadres is verplicht voor het aanmaken van een verzending. Controleer het afleveradres."
+msgstr ""
+"Emailadres is verplicht voor het aanmaken van een verzending. Controleer het"
+" afleveradres."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -386,7 +423,7 @@ msgid ""
 msgstr ""
 "Error: deze verzendmethode is niet beschikbaar. Er kon geen shipment ID "
 "gevonden worden. Dit kan veroorzaakt worden door een fout adres, of door "
-"foute instellingen. Controleer a.u.b. opnieuw of er geen foute invoer is."
+"foute instellingen. Controleer opnieuw of er geen foute invoer is."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -447,7 +484,9 @@ msgstr "Verberg Afzender"
 msgid ""
 "Hide sender and Insurance cannot be used together. Please choose one of "
 "them."
-msgstr "Expeditiegeheim en Verzekering kunnen niet tegelijk gebruikt worden. Kies a.u.b. één van de twee."
+msgstr ""
+"Expeditiegeheim en Verzekering kunnen niet tegelijk gebruikt worden. Kies "
+"één van de twee."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_home_delivery
@@ -470,7 +509,12 @@ msgid "If enabled, the label will be printed directly without confirmation."
 msgstr "Als het aan staat, wordt de label meteen geprint zonder confirmatie."
 
 #. module: delivery_myparcel
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_connect
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_europlus
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_fy
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_postnl
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_express
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_standard
 msgid "Insurance"
 msgstr "Verzekering"
 
@@ -612,8 +656,23 @@ msgid "MyParcel - DHL Parcel Connect"
 msgstr ""
 
 #. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_dpd
+msgid "MyParcel - DPD"
+msgstr ""
+
+#. module: delivery_myparcel
 #: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_postnl
 msgid "MyParcel - PostNL"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_ups_express
+msgid "MyParcel - UPS Express Saver"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__delivery_carrier__delivery_type__myparcel_ups_standard
+msgid "MyParcel - UPS Standard"
 msgstr ""
 
 #. module: delivery_myparcel
@@ -639,6 +698,11 @@ msgstr ""
 #. module: delivery_myparcel
 #: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_package_type__package_carrier_type__myparcel_dhl_connect
 msgid "MyParcel DHL Parcel Connect"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_package_type__package_carrier_type__myparcel_dpd
+msgid "MyParcel DPD"
 msgstr ""
 
 #. module: delivery_myparcel
@@ -679,15 +743,56 @@ msgid "MyParcel Shipment ID"
 msgstr ""
 
 #. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_package_type__package_carrier_type__myparcel_ups_express
+msgid "MyParcel UPS Express Saver"
+msgstr ""
+
+#. module: delivery_myparcel
+#: model:ir.model.fields.selection,name:delivery_myparcel.selection__stock_package_type__package_carrier_type__myparcel_ups_standard
+msgid "MyParcel UPS Standard"
+msgstr ""
+
+#. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_insurance_price__name
 msgid "Name"
 msgstr ""
 
 #. module: delivery_myparcel
 #. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid ""
+"No HS Code found for this product. Please check if the product is defined "
+"correctly."
+msgstr "Geen HS code gevonden voor dit product. Controleer het product."
+
+#. module: delivery_myparcel
+#. odoo-python
 #: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_base.py:0
 msgid "No MyParcel shipment ID found for this picking."
 msgstr "Geen MyParcel shipment ID gevonden voor deze picking."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid ""
+"No country of origin found for this product. Please check if the product is "
+"defined correctly."
+msgstr "Geen land van herkomst gevonden voor dit product. Controleer het product."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid ""
+"No shipping weight found. Please check if the product is defined correctly."
+msgstr "Geen zending gewicht gevonden. Controleer het product."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid ""
+"No weight found for the product. Please check if the product is defined "
+"correctly."
+msgstr "Geen gewicht gevonden voor dit product. Controleer het product."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_ordermodus
@@ -724,7 +829,10 @@ msgstr "Pakket Details"
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_connect
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_europlus
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dhl_fy
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_dpd
 #: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_postnl
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_express
+#: model_terms:ir.ui.view,arch_db:delivery_myparcel.view_delivery_carrier_form_inherit_myparcel_ups_standard
 msgid "Package Settings"
 msgstr "Pakket Instellingen"
 
@@ -744,7 +852,9 @@ msgstr "Pakket type dropdown zou hier moeten staan"
 msgid ""
 "Phone number is required for creating a shipment. Please check the delivery "
 "address."
-msgstr "Telefoonnummer is vereist voor het aanmaken van een zending. Controleer a.u.b. het afleveradres."
+msgstr ""
+"Telefoonnummer is vereist voor het aanmaken van een zending. Controleer "
+"het afleveradres."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_insurance_price__picking_id
@@ -755,7 +865,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/delivery_myparcel/models/sale.py:0
 msgid "Please set a future delivery date for the order."
-msgstr "Vul a.u.b. een toekomstige datum in voor deze order."
+msgstr "Vul een toekomstige datum in voor deze order."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -763,7 +873,9 @@ msgstr "Vul a.u.b. een toekomstige datum in voor deze order."
 msgid ""
 "Postal code is required for creating a shipment. Please check the delivery "
 "address."
-msgstr "Postcode is vereist voor het aanmaken van een zending. Controleer a.u.b. het afleveradres."
+msgstr ""
+"Postcode is vereist voor het aanmaken van een zending. Controleer het"
+" afleveradres."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_insurance_pricelist_id
@@ -803,7 +915,9 @@ msgstr "Ontvangstcode"
 msgid ""
 "Receipt code can not be selected with any other option. Please unselect the "
 "other options."
-msgstr "Ontvangstcode kan niet geselecteerd worden met andere opties (behalve verzekering optie die is vereist)."
+msgstr ""
+"Ontvangstcode kan niet geselecteerd worden met andere opties (behalve "
+"verzekering optie die is vereist)."
 
 #. module: delivery_myparcel
 #. odoo-python
@@ -811,7 +925,9 @@ msgstr "Ontvangstcode kan niet geselecteerd worden met andere opties (behalve ve
 msgid ""
 "Receipt code can only be used with insurance. Please select an insurance "
 "option."
-msgstr "Ontvangstcode kan alleen gebruikt worden met verzekering. Selecteer a.u.b. een verzekering optie."
+msgstr ""
+"Ontvangstcode kan alleen gebruikt worden met verzekering. Selecteer "
+"een verzekering optie."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_only_receiver
@@ -834,7 +950,9 @@ msgstr "Alleen Ontvanger Prijs"
 msgid ""
 "Recipient name is required for creating a shipment. Please check the "
 "delivery address."
-msgstr "Ontvanger naam is vereist voor het aanmaken van een zending. Controleer a.u.b. het afleveradres."
+msgstr ""
+"Ontvanger naam is vereist voor het aanmaken van een zending. Controleer "
+"het afleveradres."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_signing
@@ -848,7 +966,7 @@ msgstr "Handtekening"
 #. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_insurance_price__sale_id
 msgid "Sale"
-msgstr ""
+msgstr "Verkoop"
 
 #. module: delivery_myparcel
 #: model:ir.model,name:delivery_myparcel.model_sale_order
@@ -910,7 +1028,9 @@ msgstr "Zaterdagbezorging prijs"
 #. module: delivery_myparcel
 #: model:ir.model.fields,help:delivery_myparcel.field_delivery_carrier__x_aa_mp_package_type_id
 msgid "Select the package type to use for MyParcel shipments."
-msgstr "Selecteer de verpakkingssoort die gebruikt moet worden voor MyParcel zendingen."
+msgstr ""
+"Selecteer de verpakkingssoort die gebruikt moet worden voor MyParcel "
+"zendingen."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,help:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_delivery_time
@@ -956,6 +1076,20 @@ msgid "Signature is always required for Europlus deliveries."
 msgstr "Handtekening is altijd vereist voor Europlus leveringen."
 
 #. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/wizard/choose_delivery_carrier.py:0
+msgid ""
+"Signature is always required outside the Netherlands for GLS deliveries."
+msgstr "Tekening altijd vereist voor zendingen buiten Nederland voor GLS zendingen"
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/delivery_carriers/delivery_myparcel_gls.py:0
+msgid ""
+"Signing required outside the Netherlands. Please select the signing option."
+msgstr "Tekening vereist voor zendingen buiten Nederland. Selecteer de tekening optie."
+
+#. module: delivery_myparcel
 #: model:ir.model.fields,field_description:delivery_myparcel.field_choose_delivery_carrier__x_aa_mp_allow_standard_delivery
 #: model:ir.model.fields,field_description:delivery_myparcel.field_delivery_carrier__x_aa_mp_allow_standard_delivery
 #: model:ir.model.fields,field_description:delivery_myparcel.field_myparcel_mixin__x_aa_mp_allow_standard_delivery
@@ -986,7 +1120,9 @@ msgstr "Standaard printer (A4)"
 msgid ""
 "State is required for creating a shipment. Please check the delivery "
 "address."
-msgstr "De regio is vereist voor het aanmaken van een zending. Controleer a.u.b. het afleveradres."
+msgstr ""
+"De regio is vereist voor het aanmaken van een zending. Controleer het"
+" afleveradres."
 
 #. module: delivery_myparcel
 #: model:ir.model,name:delivery_myparcel.model_stock_move
@@ -1003,7 +1139,15 @@ msgstr "Verpakkingssoort"
 #: code:addons/delivery_myparcel/models/myparcel_request.py:0
 msgid ""
 "Street number not found in street field. Please check the delivery address."
-msgstr "Straat nummer niet gevonden in het straatveld. Controleer a.u.b. het afleveradres."
+msgstr ""
+"Straat nummer niet gevonden in het straatveld. Controleer het "
+"afleveradres."
+
+#. module: delivery_myparcel
+#. odoo-python
+#: code:addons/delivery_myparcel/models/myparcel_request.py:0
+msgid "The HS Code does not have the correct amount of digits."
+msgstr "De HS Code heeft niet het juiste aantal cijfers."
 
 #. module: delivery_myparcel
 #: model:ir.model.fields,help:delivery_myparcel.field_stock_picking__x_aa_mp_label_url

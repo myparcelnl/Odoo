@@ -48,7 +48,7 @@ class StockPicking(models.Model):
         # As we pass the `delivery_type` ('fixed' or 'base_on_rule' by default) in a key who
         # correspond to the `package_carrier_type` ('none' to default), we make a conversion.
         # No need conversion for other carriers as the `delivery_type` and
-        #`package_carrier_type` will be the same in these cases.
+        # `package_carrier_type` will be the same in these cases.
         if context['current_package_carrier_type'] in ['fixed', 'base_on_rule']:
             context['current_package_carrier_type'] = 'none'
         # Update the context 'default_package_type_id' passed from JS

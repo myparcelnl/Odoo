@@ -45,4 +45,5 @@ class MyparcelInsurancePrice(models.Model):
     @api.depends('x_aa_mp_insurance_selection')
     def _compute_name(self):
         for record in self:
-            record.name = dict(self._fields['x_aa_mp_insurance_selection']._description_selection(self.env)).get(record.x_aa_mp_insurance_selection)
+            record.name = dict(self._fields['x_aa_mp_insurance_selection']._description_selection(self.env)).get(
+                record.x_aa_mp_insurance_selection)

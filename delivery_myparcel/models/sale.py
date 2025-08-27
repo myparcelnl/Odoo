@@ -21,7 +21,8 @@ class SaleOrder(models.Model):
     x_aa_mp_is_myparcel = fields.Boolean(string='Is MyParcel Carrier', related='carrier_id.x_aa_mp_is_myparcel')
     x_aa_mp_selected_carrier = fields.Selection(string='Carrier Type', related='carrier_id.delivery_type')
 
-    x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price', string='Delivery Insurance Price')
+    x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price',
+                                                     string='Delivery Insurance Price')
 
     def get_delivery_date_for_myparcel_rate(self):
         if self.commitment_date and self.commitment_date.date() > date.today():

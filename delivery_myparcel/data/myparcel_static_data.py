@@ -1,11 +1,12 @@
-
 MYPARCEL_DELIVERY_TYPES = [
     'myparcel_postnl',
-    'myparcel_ups',
+    'myparcel_ups_standard',
+    'myparcel_ups_express',
     'myparcel_dpd',
     'myparcel_dhl_fy',
     'myparcel_dhl_connect',
     'myparcel_dhl_europlus'
+    'myparcel_gls',
     # TODO: Complete this list
 ]
 
@@ -19,7 +20,9 @@ MYPARCEL_CARRIER_CODES = {
     'myparcel_dhl_fy': 9,
     'myparcel_dhl_connect': 10,
     'myparcel_dhl_europlus': 11,
-    'myparcel_ups': 12
+    'myparcel_ups_standard': 12,
+    'myparcel_ups_express': 13,
+    'myparcel_gls': 14,
 }
 
 MYPARCEL_DELIVERY_CODES = {
@@ -28,7 +31,9 @@ MYPARCEL_DELIVERY_CODES = {
     'myparcel_dhl_fy': 2,
     'myparcel_dhl_connect': 2,
     'myparcel_dhl_europlus': 2,
-    'myparcel_ups': 2
+    'myparcel_ups_standard': 2,
+    'myparcel_ups_express': 2,
+    'myparcel_gls': 2,
 }
 
 MYPARCEL_LABEL_POSITIONS_CODES = {
@@ -37,3 +42,5 @@ MYPARCEL_LABEL_POSITIONS_CODES = {
     'bottom_left': 3,
     'bottom_right': 4,
 }
+
+MYPARCEL_BASE_TRACK_TRACE_URL = 'https://myparcel.me/track-trace'

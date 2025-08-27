@@ -36,6 +36,7 @@ class MyParcelMixin(models.AbstractModel):
     x_aa_mp_insurance = fields.Boolean(string='Activate Insurance', default=False)
     x_aa_mp_insurance_amount = fields.Selection(
         selection=[
+            ('8500', '85'),
             ('10000', '100'),
             ('25000', '250'),
             ('50000', '500'),
@@ -69,6 +70,7 @@ class MyParcelMixin(models.AbstractModel):
     # # Delivery time selection
     def _get_delivery_time_options(self):
         """Dynamically update the delivery time options based on the carrier's settings."""
+        # TODO: translate options
         options = []
         if self:
             if self.x_aa_mp_allow_standard_delivery:
@@ -98,7 +100,8 @@ class MyParcelMixin(models.AbstractModel):
         values = {}
         for field in self._fields:
             if field.startswith('x_aa_mp_'):
-                if field == 'x_aa_mp_insurance_pricelist_id' and obj._name not in ('choose.delivery.carrier', 'sale.order', 'stock.picking'):
+                if field == 'x_aa_mp_insurance_pricelist_id' and obj._name not in (
+                        'choose.delivery.carrier', 'sale.order', 'stock.picking'):
                     continue
                 val = getattr(obj, field)
                 if isinstance(val, models.Model):
@@ -151,9 +154,12 @@ class MyParcelMixin(models.AbstractModel):
             for option_key, context_key in fields:
                 order_or_carrier = order if order and order.carrier_id == carrier else carrier
                 if option_key == 'insurance_price' and options['insurance'] == 1:
-                    options[option_key] = self.env.context.get(context_key, getattr(order_or_carrier, context_key, False)) if self.env.context.get(context_key, getattr(order_or_carrier, context_key, False)) else 0
+                    options[option_key] = self.env.context.get(context_key, getattr(order_or_carrier, context_key,
+                                                                                    False)) if self.env.context.get(
+                        context_key, getattr(order_or_carrier, context_key, False)) else 0
                 else:
-                    options[option_key] = 1 if self.env.context.get(context_key, getattr(order_or_carrier, context_key, False)) else 0
+                    options[option_key] = 1 if self.env.context.get(context_key, getattr(order_or_carrier, context_key,
+                                                                                         False)) else 0
         except:
             _logger.error("Error generating custom field options")
             return options

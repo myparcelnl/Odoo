@@ -9,8 +9,6 @@
 from odoo import models, fields
 from .delivery_myparcel_base import BaseProviderMyParcel
 
-MYPARCEL_BASE_TRACK_TRACE_URL = 'https://myparcel.me/track-trace'
-
 
 class ProviderMyparcelDHLConnect(models.Model):
     _inherit = ['delivery.carrier', 'myparcel.mixin']
@@ -29,6 +27,7 @@ class ProviderMyparcelDHLConnect(models.Model):
             "package_type": self._get_package_type(self),
             "delivery_type": self._get_delivery_code(self.delivery_type),
             "label_description": order.name,
+            "weight": order.shipping_weight,
         }
 
         # There is a situation where the order doesnt have this as a carrier yet, but also there is no context.
@@ -36,6 +35,9 @@ class ProviderMyparcelDHLConnect(models.Model):
         # In that case we use the default values from the carrier.
         options.update(self.generate_custom_field_options(fields=[
             ("signature", "x_aa_mp_signing"),
+            # ("return", "x_aa_mp_direct_return"),
+            ("insurance", "x_aa_mp_insurance"),
+            ("insurance_price", "x_aa_mp_insurance_pricelist_id"),
         ], order=order, carrier=self))
         return options
 
@@ -56,7 +58,7 @@ class ProviderMyparcelDHLConnect(models.Model):
         return BaseProviderMyParcel.base_myparcel_get_label(self, picking=picking)
 
     def myparcel_dhl_connect_get_tracking_link(self, picking):
-        track_trace_base = MYPARCEL_BASE_TRACK_TRACE_URL
+        track_trace_base = BaseProviderMyParcel.get_myparcel_base_tracking_url()
         url = f'{track_trace_base}/{picking.carrier_tracking_ref}/{picking.partner_id.zip}/{picking.partner_id.country_id.code}'
         # url = f"https://my.dhlparcel.nl/home/tracktrace/{picking.carrier_tracking_ref}/{picking.partner_id.zip}"
         return url

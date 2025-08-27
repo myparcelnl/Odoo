@@ -8,47 +8,50 @@
 
 from odoo import models, fields, api, _
 from .delivery_myparcel_base import BaseProviderMyParcel
-import logging
 from odoo.exceptions import ValidationError
+import logging
 
 _logger = logging.getLogger()
 
 
-class ProviderMyparcelDHLForYou(models.Model):
+class ProviderMyparcelUPSStandard(models.Model):
     _inherit = ['delivery.carrier', 'myparcel.mixin']
     _name = 'delivery.carrier'
 
     delivery_type = fields.Selection(selection_add=[
-        ('myparcel_dhl_fy', 'MyParcel - DHL For You')
+        ('myparcel_ups_standard', 'MyParcel - UPS Standard')
     ], ondelete={
-        'myparcel_dhl_fy': lambda recs: recs.write({'delivery_type': 'fixed', 'fixed_price': 0})
+        'myparcel_ups_standard': lambda recs: recs.write({'delivery_type': 'fixed', 'fixed_price': 0})
     })
 
     @api.onchange(
         'x_aa_mp_age_control',
         'x_aa_mp_signing',
         'x_aa_mp_only_receiver',
-        'x_aa_mp_hide_sender',
-        'x_aa_mp_insurance'
     )
-    def myparcel_dhl_fy_check_option_combi(self, wizard_id=None):
-        if self.delivery_type == 'myparcel_dhl_fy':
-            if wizard_id:
-                if wizard_id.x_aa_mp_age_control and wizard_id.x_aa_mp_only_receiver:
-                    raise ValidationError(
-                        _('Age Check and Receiver Only cannot be used together. Please choose one of them.'))
-                if wizard_id.x_aa_mp_hide_sender and wizard_id.x_aa_mp_insurance:
-                    raise ValidationError(
-                        _('Hide sender and Insurance cannot be used together. Please choose one of them.'))
-            else:
-                if self.x_aa_mp_age_control and self.x_aa_mp_only_receiver:
-                    raise ValidationError(
-                        _('Age Check and Receiver Only cannot be used together. Please choose one of them.'))
-                if self.x_aa_mp_hide_sender and self.x_aa_mp_insurance:
-                    raise ValidationError(
-                        _('Hide sender and Insurance cannot be used together. Please choose one of them.'))
+    def myparcel_ups_check_option_combi(self, wizard_id=None):
+        if self.delivery_type == 'myparcel_ups_standard':
+            a = 1
+            # if wizard_id:
+            #     if (wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_age_control) or (
+            #             wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_signing) or (
+            #             wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_only_receiver):
+            #         raise ValidationError(
+            #             _('Receipt code can not be selected with any other option. Please unselect the other options.'))
+            #     if wizard_id.x_aa_mp_receiving_code and not wizard_id.x_aa_mp_insurance:
+            #         raise ValidationError(
+            #             _('Receipt code can only be used with insurance. Please select an insurance option.'))
+            # else:
+            #     if (self.x_aa_mp_receiving_code and self.x_aa_mp_age_control) or (
+            #             self.x_aa_mp_receiving_code and self.x_aa_mp_signing) or (
+            #             self.x_aa_mp_receiving_code and self.x_aa_mp_only_receiver):
+            #         raise ValidationError(
+            #             _('Receipt code can not be selected with any other option. Please unselect the other options.'))
+            #     if self.x_aa_mp_receiving_code and not self.x_aa_mp_insurance:
+            #         raise ValidationError(
+            #             _('Receipt code can only be used with insurance. Please select an insurance option.'))
 
-    def _myparcel_dhl_fy_get_options(self, order):
+    def _myparcel_ups_standard_get_options(self, order):
         options = {
             "package_type": self._get_package_type(self),
             "delivery_type": self._get_delivery_code(self.delivery_type),
@@ -56,46 +59,40 @@ class ProviderMyparcelDHLForYou(models.Model):
             "weight": order.shipping_weight,
         }
 
-        # There is a situation where the order doesnt have this as a carrier yet, but also there is no context.
-        # For example when we are coming from a webshop order.
-        # In that case we use the default values from the carrier.
+        # _logger.warning(F'x_aa_mp_insurance_price_id {order.x_aa_mp_insurance_price_id}')
+
         options.update(self.generate_custom_field_options(fields=[
             ("age_check", "x_aa_mp_age_control"),
             ("signature", "x_aa_mp_signing"),
             ("only_recipient", "x_aa_mp_only_receiver"),
-            # ("return", "x_aa_mp_direct_return"),
-            ("hide_sender", "x_aa_mp_hide_sender"),
             ("insurance", "x_aa_mp_insurance"),
             ("insurance_price", "x_aa_mp_insurance_pricelist_id"),
-            ("same_day_delivery", "x_aa_mp_allow_sameday_delivery"),
         ], order=order, carrier=self))
-
         return options
 
-    def myparcel_dhl_fy_rate_shipment(self, order):
-        options = self._myparcel_dhl_fy_get_options(order)
+    def myparcel_ups_standard_rate_shipment(self, order):
+        options = self._myparcel_ups_standard_get_options(order)
         return BaseProviderMyParcel.base_myparcel_rate_shipment(self, order=order, options=options,
                                                                 delivery_type=self.delivery_type)
 
-    def myparcel_dhl_fy_send_shipping(self, pickings):
+    def myparcel_ups_standard_send_shipping(self, pickings):
         res = []
         for picking in pickings:
-            options = self._myparcel_dhl_fy_get_options(picking)
+            options = self._myparcel_ups_standard_get_options(picking)
             res = BaseProviderMyParcel.base_myparcel_send_shipping(self, pickings=picking, options=options,
                                                                    delivery_type=self.delivery_type)
         return res
 
-    def myparcel_dhl_fy_get_label(self, picking):
+    def myparcel_ups_standard_get_label(self, picking):
         return BaseProviderMyParcel.base_myparcel_get_label(self, picking=picking)
 
-    def myparcel_dhl_fy_get_tracking_link(self, picking):
+    def myparcel_ups_standard_get_tracking_link(self, picking):
         track_trace_base = BaseProviderMyParcel.get_myparcel_base_tracking_url()
         url = f'{track_trace_base}/{picking.carrier_tracking_ref}/{picking.partner_id.zip}/{picking.partner_id.country_id.code}'
-        # url = f"https://my.dhlparcel.nl/home/tracktrace/{picking.carrier_tracking_ref}/{picking.partner_id.zip}"
         return url
 
-    def myparcel_dhl_fy_cancel_shipment(self, picking):
+    def myparcel_ups_standard_cancel_shipment(self, picking):
         return BaseProviderMyParcel.base_myparcel_cancel_shipment(self, picking=picking)
 
-    def _myparcel_dhl_fy_get_default_custom_package_code(self):
+    def _myparcel_ups_standard_get_default_custom_package_code(self):
         return BaseProviderMyParcel.base_myparcel_get_default_custom_package_code(self)

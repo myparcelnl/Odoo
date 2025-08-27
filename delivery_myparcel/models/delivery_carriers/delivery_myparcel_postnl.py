@@ -13,8 +13,6 @@ import logging
 
 _logger = logging.getLogger()
 
-MYPARCEL_BASE_TRACK_TRACE_URL = 'https://myparcel.me/track-trace'
-
 
 class ProviderMyparcelPostNL(models.Model):
     _inherit = ['delivery.carrier', 'myparcel.mixin']
@@ -35,14 +33,18 @@ class ProviderMyparcelPostNL(models.Model):
     def myparcel_postnl_check_option_combi(self, wizard_id=None):
         if self.delivery_type == 'myparcel_postnl':
             if wizard_id:
-                if (wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_age_control) or (wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_signing) or (wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_only_receiver):
+                if (wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_age_control) or (
+                        wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_signing) or (
+                        wizard_id.x_aa_mp_receiving_code and wizard_id.x_aa_mp_only_receiver):
                     raise ValidationError(
                         _('Receipt code can not be selected with any other option. Please unselect the other options.'))
                 if wizard_id.x_aa_mp_receiving_code and not wizard_id.x_aa_mp_insurance:
                     raise ValidationError(
                         _('Receipt code can only be used with insurance. Please select an insurance option.'))
             else:
-                if (self.x_aa_mp_receiving_code and self.x_aa_mp_age_control) or (self.x_aa_mp_receiving_code and self.x_aa_mp_signing) or (self.x_aa_mp_receiving_code and self.x_aa_mp_only_receiver):
+                if (self.x_aa_mp_receiving_code and self.x_aa_mp_age_control) or (
+                        self.x_aa_mp_receiving_code and self.x_aa_mp_signing) or (
+                        self.x_aa_mp_receiving_code and self.x_aa_mp_only_receiver):
                     raise ValidationError(
                         _('Receipt code can not be selected with any other option. Please unselect the other options.'))
                 if self.x_aa_mp_receiving_code and not self.x_aa_mp_insurance:
@@ -54,17 +56,16 @@ class ProviderMyparcelPostNL(models.Model):
             "package_type": self._get_package_type(self),
             "delivery_type": self._get_delivery_code(self.delivery_type),
             "label_description": order.name,
+            "weight": order.shipping_weight,
         }
-
-        # _logger.warning(F'x_aa_mp_insurance_price_id {order.x_aa_mp_insurance_price_id}')
 
         options.update(self.generate_custom_field_options(fields=[
             ("age_check", "x_aa_mp_age_control"),
             ("signature", "x_aa_mp_signing"),
             ("only_recipient", "x_aa_mp_only_receiver"),
             ("receipt_code", "x_aa_mp_receiving_code"),
-            # ("return", "x_aa_mp_direct_return"),
-            # ("large_format", "x_aa_mp_large_package"),
+            ("return", "x_aa_mp_direct_return"),
+            ("large_format", "x_aa_mp_large_package"),
             ("insurance", "x_aa_mp_insurance"),
             ("insurance_price", "x_aa_mp_insurance_pricelist_id"),
         ], order=order, carrier=self))
@@ -94,7 +95,7 @@ class ProviderMyparcelPostNL(models.Model):
         return BaseProviderMyParcel.base_myparcel_get_label(self, picking=picking)
 
     def myparcel_postnl_get_tracking_link(self, picking):
-        track_trace_base = MYPARCEL_BASE_TRACK_TRACE_URL
+        track_trace_base = BaseProviderMyParcel.get_myparcel_base_tracking_url()
         if ' / ' in picking.carrier_tracking_ref:
             # In case the tracking reference is formatted as '123456789 / 123456789'
             track_trace_ref = picking.carrier_tracking_ref.split(' / ')[0]

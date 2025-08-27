@@ -9,7 +9,8 @@
 from odoo import models, fields, api, _
 from odoo.tools import pdf
 from odoo.addons.delivery_myparcel.data.myparcel_static_data import MYPARCEL_DELIVERY_TYPES, \
-    SENDMYPARCEL_DELIVERY_TYPES, MYPARCEL_CARRIER_CODES, MYPARCEL_DELIVERY_CODES, MYPARCEL_LABEL_POSITIONS_CODES
+    SENDMYPARCEL_DELIVERY_TYPES, MYPARCEL_CARRIER_CODES, MYPARCEL_DELIVERY_CODES, MYPARCEL_LABEL_POSITIONS_CODES, \
+    MYPARCEL_BASE_TRACK_TRACE_URL
 from odoo.exceptions import UserError, ValidationError
 from ..myparcel_request import MyParcelRequest
 import logging
@@ -101,25 +102,20 @@ class BaseProviderMyParcel(models.Model):
             if 'signature' in options and options['signature'] == 1:
                 if self.x_aa_mp_signing_price:
                     extra_price += self.x_aa_mp_signing_price
-            # if 'return' in options and options['return'] == 1:
-            #     if self.x_aa_mp_direct_return_price:
-            #         extra_price += self.x_aa_mp_direct_return_price
-            # if 'large_format' in options and options['large_format'] == 1:
-            #     if self.x_aa_mp_large_package_price:
-            #         extra_price += self.x_aa_mp_large_package_price
+            if 'return' in options and options['return'] == 1:
+                if self.x_aa_mp_direct_return_price:
+                    extra_price += self.x_aa_mp_direct_return_price
+            if 'large_format' in options and options['large_format'] == 1:
+                if self.x_aa_mp_large_package_price:
+                    extra_price += self.x_aa_mp_large_package_price
             if 'insurance' in options and options['insurance'] == 1:
                 insurance_price_opt = options['insurance_price']
                 _logger.warning(F'insurance_price_opt {insurance_price_opt}')
                 if options['insurance_price']:
-                    insurance_price = self.x_aa_mp_insurance_pricelist_id.search([('carrier_id', '=', self.id), ('id', '=', options['insurance_price'].id)], limit=1).price
+                    insurance_price = self.x_aa_mp_insurance_pricelist_id.search(
+                        [('carrier_id', '=', self.id), ('id', '=', options['insurance_price'].id)], limit=1).price
                     _logger.warning(F'insurance_price {insurance_price}')
                     extra_price += int(insurance_price)
-                # option_amount = options['insurance']
-                # _logger.warning(F'insurance price is {option_amount}')
-                # for prices in self.x_aa_mp_insurance_pricelist_id:
-                #     _logger.warning(F'prices.name {prices.name} and prices.price {prices.price}')
-                #     if int(prices.name) == int(options['insurance']['amount']):
-                #         extra_price += prices.price
             if 'same_day_delivery' in options and options['same_day_delivery'] == 1:
                 if self.x_aa_mp_sameday_delivery_price:
                     extra_price += self.x_aa_mp_sameday_delivery_price
@@ -261,7 +257,8 @@ class BaseProviderMyParcel(models.Model):
                     _logger.warning(F'multi_shipment_ids {multi_shipment_ids}')
                     # get tracking code
                     if len(multi_shipment_ids) > 0:
-                        tracking_code = self.base_myparcel_get_tracking_link(pickings, multi_shipment_ids, myparcel_request,
+                        tracking_code = self.base_myparcel_get_tracking_link(pickings, multi_shipment_ids,
+                                                                             myparcel_request,
                                                                              attachments)
                     else:
                         tracking_code = self.base_myparcel_get_tracking_link(pickings, shipment_id, myparcel_request,
@@ -334,7 +331,7 @@ class BaseProviderMyParcel(models.Model):
                 shipment_label = myparcel_request.get_label(picking.x_aa_mp_shipping_id,
                                                             picking.carrier_id.x_aa_mp_label_size,
                                                             picking.carrier_id._get_label_position_code(
-                                                            picking.carrier_id.x_aa_mp_label_position))
+                                                                picking.carrier_id.x_aa_mp_label_position))
                 if shipment_label != 'Error':
                     _logger.info(shipment_label)
                     label_end_url = shipment_label['data']['pdfs']['url']
@@ -354,6 +351,10 @@ class BaseProviderMyParcel(models.Model):
                     }]
 
                 return res
+
+    @staticmethod
+    def get_myparcel_base_tracking_url():
+        return MYPARCEL_BASE_TRACK_TRACE_URL
 
     def base_myparcel_get_tracking_link(self, picking, shipment_id=None, myparcel_request=None, attachments=None):
         # TODO: Add other track and trace retrieving methods for the other carriers
@@ -422,6 +423,59 @@ class BaseProviderMyParcel(models.Model):
                                tracking_numbers=track_trace_link)
                 # packages=format_list(self.env, [p.name for p in packages if p.name]))
                 # packages='YYY')
+                picking.message_post(body=logmessage, attachments=attachments)
+                return tracking_code
+        elif 'ups' in picking.carrier_id.delivery_type:
+            if shipment_id and myparcel_request:
+                track_trace = myparcel_request.track_trace(shipment_id)
+                track_trace_link = track_trace['data']['tracktraces'][0]['link_tracktrace']
+
+                if track_trace_link:
+                    parsed_url = urlparse(track_trace_link)
+                    query_params = parse_qs(parsed_url.query)
+                    tracking_code = query_params.get('trackNums', [None])[0]
+                    _logger.warning(F'tracking_code {tracking_code}')
+                else:
+                    tracking_code = 'No tracking code found'
+
+                logmessage = _("Shipment created into MyParcel<br/>"
+                               "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
+                               tracking_numbers=track_trace_link)
+                picking.message_post(body=logmessage, attachments=attachments)
+                return tracking_code
+        elif 'dpd' in picking.carrier_id.delivery_type:
+            if shipment_id and myparcel_request:
+                track_trace = myparcel_request.track_trace(shipment_id)
+                track_trace_link = track_trace['data']['tracktraces'][0]['link_tracktrace']
+                if track_trace_link:
+                    parsed_url = urlparse(track_trace_link)
+                    query_params = parse_qs(parsed_url.query)
+                    tracking_code = query_params.get('parcelNumber', [None])[0]
+                    _logger.warning(F'tracking_code {tracking_code}')
+                else:
+                    tracking_code = 'No tracking code found'
+
+                logmessage = _("Shipment created into MyParcel<br/>"
+                               "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
+                               tracking_numbers=track_trace_link)
+                picking.message_post(body=logmessage, attachments=attachments)
+                return tracking_code
+        elif 'gls' in picking.carrier_id.delivery_type:
+            if shipment_id and myparcel_request:
+                track_trace = myparcel_request.track_trace(shipment_id)
+                track_trace_link = track_trace['data']['tracktraces'][0]['link_tracktrace']
+                _logger.warning(F'track_trace_link {track_trace_link}')
+                if track_trace_link:
+                    parsed_url = urlparse(track_trace_link)
+                    query_params = parse_qs(parsed_url.query)
+                    tracking_code = query_params.get('parcelNumber', [None])[0]
+                    _logger.warning(F'tracking_code {tracking_code}')
+                else:
+                    tracking_code = 'No tracking code found'
+
+                logmessage = _("Shipment created into MyParcel<br/>"
+                               "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
+                               tracking_numbers=track_trace_link)
                 picking.message_post(body=logmessage, attachments=attachments)
                 return tracking_code
         return
