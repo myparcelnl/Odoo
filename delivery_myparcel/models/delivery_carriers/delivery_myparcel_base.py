@@ -25,6 +25,8 @@ class BaseProviderMyParcel(models.Model):
 
     x_aa_mp_is_myparcel = fields.Boolean(string='Is MyParcel Carrier', compute='_compute_is_myparcel_carrier')
     x_aa_mp_is_sendmyparcel = fields.Boolean(string='Is SendMyParcel Carrier', compute='_compute_is_myparcel_carrier')
+    x_aa_mp_platform = fields.Selection([('myparcel', 'MyParcel NL'), ('sendmyparcel', 'MyParcel BE')],
+                                        string='MyParcel Platform', required=True, store=True)
 
     # General settings - Algemene settings
     x_aa_mp_api_key = fields.Char(string='API Key')
@@ -45,7 +47,8 @@ class BaseProviderMyParcel(models.Model):
 
     # Package type settings
     x_aa_mp_package_type_id = fields.Many2one('stock.package.type', string='Package Type',
-                                              help="Select the package type to use for MyParcel shipments.")
+                                              help="Select the package type to use for MyParcel shipments.",
+                                              required=True)
 
     # Customs settings - Douane settings
     x_aa_mp_package_type = fields.Char(string='Package type dropdown should be here')
@@ -78,11 +81,13 @@ class BaseProviderMyParcel(models.Model):
     x_aa_mp_direct_return_price = fields.Monetary(string='Direct Return Price', default=0.0,
                                                   currency_field='currency_id')
 
-    @api.depends('delivery_type')
+    @api.depends('delivery_type', 'x_aa_mp_platform')
     def _compute_is_myparcel_carrier(self):
         for rec in self:
-            rec.x_aa_mp_is_myparcel = rec.delivery_type and rec.delivery_type in MYPARCEL_DELIVERY_TYPES
-            rec.x_aa_mp_is_sendmyparcel = rec.delivery_type and rec.delivery_type in SENDMYPARCEL_DELIVERY_TYPES
+            rec.x_aa_mp_is_myparcel = (rec.delivery_type and rec.delivery_type in MYPARCEL_DELIVERY_TYPES and
+                                       rec.x_aa_mp_platform == 'myparcel')
+            rec.x_aa_mp_is_sendmyparcel = (rec.delivery_type and rec.delivery_type in SENDMYPARCEL_DELIVERY_TYPES and
+                                           rec.x_aa_mp_platform == 'sendmyparcel')
 
     def get_myparcel_request(self, carrier_id, module_version):
         return MyParcelRequest(carrier_id=carrier_id, module_version=module_version)
@@ -258,8 +263,7 @@ class BaseProviderMyParcel(models.Model):
                     # get tracking code
                     if len(multi_shipment_ids) > 0:
                         tracking_code = self.base_myparcel_get_tracking_link(pickings, multi_shipment_ids,
-                                                                             myparcel_request,
-                                                                             attachments)
+                                                                             myparcel_request, attachments)
                     else:
                         tracking_code = self.base_myparcel_get_tracking_link(pickings, shipment_id, myparcel_request,
                                                                              attachments)
@@ -363,7 +367,7 @@ class BaseProviderMyParcel(models.Model):
                 if not isinstance(shipment_id, list):
                     track_trace = myparcel_request.track_trace(shipment_id)
                     track_trace_link = track_trace['data']['tracktraces'][0]['link_tracktrace']
-
+                    _logger.warning(F'track_trace_link {track_trace_link}')
                     if track_trace_link:
                         parsed_url = urlparse(track_trace_link)
                         query_params = parse_qs(parsed_url.query)
@@ -375,8 +379,6 @@ class BaseProviderMyParcel(models.Model):
                     logmessage = _("Shipment created into MyParcel<br/>"
                                    "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
                                    tracking_numbers=track_trace_link)
-                    # packages=format_list(self.env, [p.name for p in packages if p.name]))
-                    # packages='YYY')
                     picking.message_post(body=logmessage, attachments=attachments)
                     return tracking_code
                 else:
@@ -400,8 +402,6 @@ class BaseProviderMyParcel(models.Model):
                         logmessage = _("Shipment created into MyParcel<br/>"
                                        "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
                                        tracking_numbers=track_trace_link)
-                        # packages=format_list(self.env, [p.name for p in packages if p.name]))
-                        # packages='YYY')
                         picking.message_post(body=logmessage, attachments=attachments)
                     _logger.warning(F'all_tracking_codes {all_tracking_codes}')
                     return all_tracking_codes
@@ -421,8 +421,6 @@ class BaseProviderMyParcel(models.Model):
                 logmessage = _("Shipment created into MyParcel<br/>"
                                "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
                                tracking_numbers=track_trace_link)
-                # packages=format_list(self.env, [p.name for p in packages if p.name]))
-                # packages='YYY')
                 picking.message_post(body=logmessage, attachments=attachments)
                 return tracking_code
         elif 'ups' in picking.carrier_id.delivery_type:
@@ -469,6 +467,26 @@ class BaseProviderMyParcel(models.Model):
                     parsed_url = urlparse(track_trace_link)
                     query_params = parse_qs(parsed_url.query)
                     tracking_code = query_params.get('parcelNumber', [None])[0]
+                    _logger.warning(F'tracking_code {tracking_code}')
+                else:
+                    tracking_code = 'No tracking code found'
+
+                logmessage = _("Shipment created into MyParcel<br/>"
+                               "<b>Tracking Links:</b> %(tracking_numbers)s<br/>",
+                               tracking_numbers=track_trace_link)
+                picking.message_post(body=logmessage, attachments=attachments)
+                return tracking_code
+        elif 'bpost' in picking.carrier_id.delivery_type:
+            if shipment_id and myparcel_request:
+                track_trace = myparcel_request.track_trace(shipment_id)
+                track_trace_link = track_trace['data']['tracktraces'][0]['link_tracktrace']
+                _logger.warning(F'track_trace_link {track_trace_link}')
+                if track_trace_link:
+                    parsed_url = urlparse(track_trace_link)
+                    fragment_params = parse_qs(parsed_url.fragment)
+                    _logger.warning(F'parsed_url {parsed_url}')
+                    _logger.warning(F'fragment_params {fragment_params}')
+                    tracking_code = fragment_params.get('/search?itemCode', [None])[0]
                     _logger.warning(F'tracking_code {tracking_code}')
                 else:
                     tracking_code = 'No tracking code found'

@@ -20,7 +20,15 @@ class StockPicking(models.Model):
     x_aa_mp_label_url = fields.Char('Label URL', help='The URL of the label for the shipment.', readonly=True,
                                     copy=False)
 
+    x_aa_mp_is_myparcel = fields.Boolean(related='carrier_id.x_aa_mp_is_myparcel')
+    x_aa_mp_is_sendmyparcel = fields.Boolean(related='carrier_id.x_aa_mp_is_sendmyparcel')
+
     x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price', string='Delivery Insurance Price')
+
+    country_code = fields.Char(related='sale_id.partner_shipping_id.country_id.code', string='Country Code',
+                               readonly=True)
+    european_country_code = fields.Boolean(related='sale_id.partner_shipping_id.country_id.x_aa_mp_is_european',
+                                           string='Is European Country', readonly=True)
 
     def action_send_to_myparcel(self):
         if self.carrier_id:
@@ -48,7 +56,7 @@ class StockPicking(models.Model):
         # As we pass the `delivery_type` ('fixed' or 'base_on_rule' by default) in a key who
         # correspond to the `package_carrier_type` ('none' to default), we make a conversion.
         # No need conversion for other carriers as the `delivery_type` and
-        # `package_carrier_type` will be the same in these cases.
+        #`package_carrier_type` will be the same in these cases.
         if context['current_package_carrier_type'] in ['fixed', 'base_on_rule']:
             context['current_package_carrier_type'] = 'none'
         # Update the context 'default_package_type_id' passed from JS

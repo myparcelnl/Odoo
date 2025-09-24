@@ -18,6 +18,7 @@
     - DHL Parcel Connect
     - PostNL
     - DPD
+    - Bpost
     - UPS Standard
     - UPS Express Saver
     
@@ -25,7 +26,7 @@
     
     """,
     'category': 'Inventory/Delivery',
-    'version': '0.3.0',
+    'version': '0.4.0',
     'author': 'Aardug, MyParcel',
     'website': 'https://www.myparcel.nl/',
     'support': 'helpdesk@aardug.eu',
@@ -38,6 +39,7 @@
         'data/delivery_data/delivery_data_dhl_europlus.xml',
         'data/delivery_data/delivery_data_postnl.xml',
         'data/delivery_data/delivery_data_dpd.xml',
+        'data/delivery_data/delivery_data_bpost.xml',
         'data/delivery_data/delivery_data_ups_standard.xml',
         'data/delivery_data/delivery_data_ups_express.xml',
         # 'data/delivery_data/delivery_data_gls.xml',
@@ -49,6 +51,7 @@
         'views/carrier_views/delivery_carrier_dhl_connect_views.xml',
         'views/carrier_views/delivery_carrier_dhl_europlus_views.xml',
         'views/carrier_views/delivery_carrier_dpd_views.xml',
+        'views/carrier_views/delivery_carrier_bpost_views.xml',
         'views/carrier_views/delivery_carrier_ups_standard_views.xml',
         'views/carrier_views/delivery_carrier_ups_express_views.xml',
         # 'views/carrier_views/delivery_carrier_gls_views.xml',

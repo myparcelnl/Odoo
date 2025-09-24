@@ -19,10 +19,16 @@ class SaleOrder(models.Model):
     _name = 'sale.order'
 
     x_aa_mp_is_myparcel = fields.Boolean(string='Is MyParcel Carrier', related='carrier_id.x_aa_mp_is_myparcel')
+    x_aa_mp_is_sendmyparcel = fields.Boolean(string='Is SendMyParcel Carrier',
+                                             related='carrier_id.x_aa_mp_is_sendmyparcel')
     x_aa_mp_selected_carrier = fields.Selection(string='Carrier Type', related='carrier_id.delivery_type')
 
-    x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price',
-                                                     string='Delivery Insurance Price')
+    x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price', string='Delivery Insurance Price')
+
+    country_code = fields.Char(related='partner_shipping_id.country_id.code', string='Country Code',
+                               readonly=True)
+    european_country_code = fields.Boolean(related='partner_shipping_id.country_id.x_aa_mp_is_european',
+                                           string='Is European Country', readonly=True)
 
     def get_delivery_date_for_myparcel_rate(self):
         if self.commitment_date and self.commitment_date.date() > date.today():

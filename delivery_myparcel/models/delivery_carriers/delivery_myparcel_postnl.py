@@ -28,7 +28,8 @@ class ProviderMyparcelPostNL(models.Model):
         'x_aa_mp_age_control',
         'x_aa_mp_signing',
         'x_aa_mp_only_receiver',
-        'x_aa_mp_receiving_code'
+        'x_aa_mp_receiving_code',
+        'x_aa_mp_insurance',
     )
     def myparcel_postnl_check_option_combi(self, wizard_id=None):
         if self.delivery_type == 'myparcel_postnl':
@@ -41,6 +42,11 @@ class ProviderMyparcelPostNL(models.Model):
                 if wizard_id.x_aa_mp_receiving_code and not wizard_id.x_aa_mp_insurance:
                     raise ValidationError(
                         _('Receipt code can only be used with insurance. Please select an insurance option.'))
+                if ((wizard_id.x_aa_mp_signing and not wizard_id.x_aa_mp_insurance) and
+                        (wizard_id.order_id.partner_shipping_id.country_id.code not in ['BE', 'NL'])):
+                    raise ValidationError(
+                        _('Signature can only be used with insurance in EU/ROW shipments. '
+                          'Please select an insurance option.'))
             else:
                 if (self.x_aa_mp_receiving_code and self.x_aa_mp_age_control) or (
                         self.x_aa_mp_receiving_code and self.x_aa_mp_signing) or (
@@ -50,6 +56,11 @@ class ProviderMyparcelPostNL(models.Model):
                 if self.x_aa_mp_receiving_code and not self.x_aa_mp_insurance:
                     raise ValidationError(
                         _('Receipt code can only be used with insurance. Please select an insurance option.'))
+                if ((self.x_aa_mp_signing and not self.x_aa_mp_insurance) and
+                        (self.partner_shipping_id.country_id.code not in ['BE', 'NL'])):
+                    raise ValidationError(
+                        _('Signature can only be used with insurance in EU/ROW shipments. '
+                          'Please select an insurance option.'))
 
     def _myparcel_postnl_get_options(self, order):
         options = {

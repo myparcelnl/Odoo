@@ -11,30 +11,6 @@
                         <field name="x_aa_mp_package_type_id" domain="[('package_carrier_type', '=', 'myparcel_dpd')]"/>
                     </group>
                     <group string="Carrier settings: DPD" invisible="delivery_type != 'myparcel_dpd'">
-                        <!--                        <label for="x_aa_mp_direct_return"/>-->
-                        <!--                        <div name="direct_return">-->
-                        <!--                            <field name="x_aa_mp_direct_return"/>-->
-                        <!--                            <field name="x_aa_mp_direct_return_price" widget="monetary" class="oe_inline"-->
-                        <!--                                   invisible="not x_aa_mp_direct_return or x_aa_mp_delivery_price != 'fixed'"/>-->
-                        <!--                        </div>-->
-                        <!--                        <label for="x_aa_mp_allow_standard_delivery"/>-->
-                        <!--                        <div name="standard_delivery">-->
-                        <!--                            <field name="x_aa_mp_allow_standard_delivery"/>-->
-                        <!--                            <field name="x_aa_mp_standard_delivery_price" widget="monetary" class="oe_inline"-->
-                        <!--                                   invisible="not x_aa_mp_allow_standard_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
-                        <!--                        </div>-->
-                        <!--                        <label for="x_aa_mp_allow_monday_delivery"/>-->
-                        <!--                        <div name="monday_delivery">-->
-                        <!--                            <field name="x_aa_mp_allow_monday_delivery"/>-->
-                        <!--                            <field name="x_aa_mp_monday_delivery_price" widget="monetary" class="oe_inline"-->
-                        <!--                                   invisible="not x_aa_mp_allow_monday_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
-                        <!--                        </div>-->
-                        <!--                        <label for="x_aa_mp_allow_saturday_delivery"/>-->
-                        <!--                        <div name="saturday_delivery">-->
-                        <!--                            <field name="x_aa_mp_allow_saturday_delivery"/>-->
-                        <!--                            <field name="x_aa_mp_saturday_delivery_price" widget="monetary" class="oe_inline"-->
-                        <!--                                   invisible="not x_aa_mp_allow_saturday_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
-                        <!--                        </div>-->
                     </group>
                 </xpath>
             </field>

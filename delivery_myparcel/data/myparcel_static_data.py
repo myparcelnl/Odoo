@@ -1,3 +1,4 @@
+
 MYPARCEL_DELIVERY_TYPES = [
     'myparcel_postnl',
     'myparcel_ups_standard',
@@ -5,17 +6,19 @@ MYPARCEL_DELIVERY_TYPES = [
     'myparcel_dpd',
     'myparcel_dhl_fy',
     'myparcel_dhl_connect',
-    'myparcel_dhl_europlus'
+    'myparcel_dhl_europlus',
     'myparcel_gls',
-    # TODO: Complete this list
 ]
 
 SENDMYPARCEL_DELIVERY_TYPES = [
-    # TODO: Complete this list
+    'myparcel_postnl',
+    'myparcel_dpd',
+    'myparcel_bpost',
 ]
 
 MYPARCEL_CARRIER_CODES = {
     'myparcel_postnl': 1,
+    'myparcel_bpost': 2,
     'myparcel_dpd': 4,
     'myparcel_dhl_fy': 9,
     'myparcel_dhl_connect': 10,
@@ -27,6 +30,7 @@ MYPARCEL_CARRIER_CODES = {
 
 MYPARCEL_DELIVERY_CODES = {
     'myparcel_postnl': 2,
+    'myparcel_bpost': 2,
     'myparcel_dpd': 2,
     'myparcel_dhl_fy': 2,
     'myparcel_dhl_connect': 2,

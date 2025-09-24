@@ -105,12 +105,13 @@ class MyParcelRequest:
             else:
                 raise ValidationError(
                     _('Country code is required for creating a shipment. Please check the delivery address.'))
+
             if recipient.state_id:
-                if recipient.country_id.code == 'US':
+                if recipient.country_id.code in ['US', 'CA', 'AU']:
                     recipient_dict['state'] = recipient.state_id.code
                 else:
                     recipient_dict['region'] = recipient.state_id.name
-            else:
+            elif recipient.country_id.code != 'BE':
                 raise ValidationError(
                     _('State is required for creating a shipment. Please check the delivery address.'))
 
@@ -121,7 +122,7 @@ class MyParcelRequest:
 
             # get street number for EU countries
             if recipient.country_id.x_aa_mp_is_european:
-                if recipient.street2:
+                if recipient.street2 and recipient.country_id.code != 'BE':
                     recipient_dict['street'] = recipient.street
                     recipient_dict['number'] = recipient.street2
                 else:
@@ -130,6 +131,8 @@ class MyParcelRequest:
                             street_number = re.match(r"^(.*?)(\d+)$", recipient.street.strip()).group(2).strip()
                             recipient_dict['street'] = recipient.street.replace(str(street_number), '')
                             recipient_dict['number'] = street_number
+                            if recipient.country_id.code == 'BE':
+                                recipient_dict['box_number'] = recipient.street2
                             _logger.warning(F'number {street_number}')
                         else:
                             raise ValidationError(
@@ -145,7 +148,7 @@ class MyParcelRequest:
                     recipient_dict['street_additional_info'] = recipient.street2
                 else:
                     raise ValidationError(
-                        _('Complete address is required for creating a shipment. Please check the delivery address.'))
+                        _('Complete adress is required for creating a shipment. Please check the delivery address.'))
 
             if recipient.zip:
                 recipient_dict['postal_code'] = recipient.zip
@@ -177,33 +180,53 @@ class MyParcelRequest:
             return recipient_dict
         else:
             raise ValidationError(
-                _('Correct contact information is required for creating a shipment. Please check the delivery address.'))
+                _('Correct contact information is required for creating a shipment. '
+                  'Please check the delivery address.'))
+
+    def _get_insurance_price(self, record, options):
+        # Add insurance
+        _logger.warning(F'options in post_shipment_body {options}')
+        if record:
+            if options['insurance'] == 1:
+                ins_price = options['insurance_price']
+                _logger.warning(F'insurance price in request {ins_price}')
+                insured_amount = record.x_aa_mp_insurance_pricelist_id.search(
+                    [('id', '=', options['insurance_price'].id)], limit=1)
+                if insured_amount:
+                    insured_amount = int(insured_amount.x_aa_mp_insurance_selection)
+                options['insurance'] = {
+                    "amount": insured_amount,
+                    "currency": record.currency_id.name or "EUR"
+                }
+                options.pop('insurance_price')
+            else:
+                options.pop('insurance')
+                options.pop('insurance_price')
+        else:
+            options.pop('insurance')
+            options.pop('insurance_price')
+
+        _logger.warning(F'options in body construction {options}')
+        return options
 
     def _get_customs_declaration(self, record, carrier_code, recipient):
         _logger.warning(F'record._name {record._name}')
         customs_declaration = {}
-        # TODO: Put first part ou of loop depending on if can be done
         if record.sudo()._name == 'sale.order':
             customs_declaration['contents'] = 1
-            # TODO: implement package contents (commercial goods, commercial samples etc...)
-            customs_declaration['invoice'] = record.name  # TODO: implement invoice number
-            customs_declaration['weight'] = int(
-                record.shipping_weight * 1000) if record.shipping_weight else ValidationError(
-                _('No shipping weight found. Please check if the product is defined correctly.'))
+            customs_declaration['invoice'] = record.name
+            customs_declaration['weight'] = int(record.shipping_weight * 1000) if record.shipping_weight else (
+                ValidationError(_('No shipping weight found. Please check if the product is defined correctly.')))
             items_list = []
             for order_line in record.order_line:
                 if order_line.product_id.type != 'service':
-                    # TODO: CHECK hs code or ISIC code and check country_of_origin model
-                    # TODO: get classification code based on carrier
-                    # Get list for each carrier required HS code length
                     # Check number of characters per HS code
                     if order_line.product_id.hs_code:
                         if (len(order_line.product_id.hs_code) == 10 and recipient.country_id.cc == 'US') or (
-                                len(order_line.product_id.hs_code) >= 6 and recipient.country_id.cc != 'US'):
+                                len(order_line.product_id.hs_code) in [6, 8, 10]):
                             classification = order_line.product_id.hs_code
                         else:
-                            raise ValidationError(_('The HS Code does not have the correct amount of digits (minimum 6 '
-                                                    'digits and minimum 10 digits for US shipments.'))
+                            raise ValidationError(_('The HS Code does not have the correct amount of digits.'))
                     else:
                         raise ValidationError(
                             _('No HS Code found for this product. Please check if the product is defined correctly.'))
@@ -211,34 +234,33 @@ class MyParcelRequest:
                     items_list.append({
                         'description': order_line.name,
                         'amount': int(order_line.product_uom_qty),
-                        'weight': int(
-                            order_line.product_id.weight * 1000) if order_line.product_id.weight else ValidationError(
-                            _('No weight found for the product. Please check if the product is defined correctly.')),
+                        'weight': int(order_line.product_id.weight * 1000) if order_line.product_id.weight else
+                        ValidationError(_('No weight found for the product. '
+                                          'Please check if the product is defined correctly.')),
                         'item_value': {
                             "amount": int(order_line.price_unit * order_line.product_uom_qty * 100),
                             "currency": record.currency_id.name or "EUR",
                         },
                         'classification': classification,
-                        'country': order_line.product_id.country_of_origin.code if order_line.product_id.country_of_origin else ValidationError(
-                            _('No country of origin found for this product. Please check if the product is defined correctly.')),
+                        'country': order_line.product_id.country_of_origin.code if
+                                   order_line.product_id.country_of_origin else ValidationError(
+                                    _('No country of origin found for this product. '
+                                    'Please check if the product is defined correctly.')),
                     })
 
             _logger.warning(F'items for douane declaration {items_list}')
             customs_declaration['items'] = items_list
 
         elif record.sudo()._name == 'stock.picking':
-            # TODO: Put first part ou of loop depending on if can be done
             customs_declaration['contents'] = 1
-            # TODO: implement package contents (commercial goods, commercial samples etc...)
-            customs_declaration['invoice'] = record.name  # TODO: implement invoice number
-            customs_declaration['weight'] = int(
-                record.shipping_weight * 1000) if record.shipping_weight else ValidationError(
-                _('No shipping weight found. Please check if the product is defined correctly.'))
+            customs_declaration['invoice'] = record.name
+            customs_declaration['weight'] = int(record.shipping_weight * 1000) if record.shipping_weight else (
+                ValidationError(_('No shipping weight found. Please check if the product is defined correctly.')))
             items_list = []
             for stock_move in record.move_ids:
                 order_line = record.sale_id.order_line.search(
                     [('product_template_id', '=', stock_move.product_id.product_tmpl_id.id)], limit=1)
-                # TODO: CHECK hs code or ISIC code and check country_of_origin model
+
                 # Check number of characters per HS code
                 if order_line.product_id.hs_code:
                     if (len(order_line.product_id.hs_code) == 10 and recipient.country_id.cc == 'US') or (
@@ -253,16 +275,17 @@ class MyParcelRequest:
                 items_list.append({
                     'description': stock_move.product_id.name,
                     'amount': int(stock_move.quantity),
-                    'weight': int(
-                        stock_move.product_id.weight * 1000) if stock_move.product_id.weight else ValidationError(
-                        _('No weight found for the product. Please check if the product is defined correctly.')),
+                    'weight': int(stock_move.product_id.weight * 1000) if stock_move.product_id.weight else
+                                ValidationError(_('No weight found for the product. '
+                                                  'Please check if the product is defined correctly.')),
                     'item_value': {
                         "amount": int(order_line.price_unit * order_line.product_uom_qty * 100),
                         "currency": record.currency_id.name or "EUR",
                     },
                     'classification': classification,
-                    'country': stock_move.product_id.country_of_origin.code if stock_move.product_id.country_of_origin else ValidationError(
-                        _('No country of origin found for this product. Please check if the product is defined correctly.')),
+                    'country': stock_move.product_id.country_of_origin.code if stock_move.product_id.country_of_origin
+                                else ValidationError(_('No country of origin found for this product. '
+                                                       'Please check if the product is defined correctly.')),
                 })
 
             _logger.warning(F'items for douane declaration {items_list}')
@@ -281,32 +304,9 @@ class MyParcelRequest:
             else:
                 raise ValidationError(_('Company name is required for creating a shipment. Please check the contact.'))
 
-        # TODO: options implementeren
-
-        # Add insurance
-        _logger.warning(F'options in post_shipment_body {options}')
+        # Get Insurance price
         if options and 'insurance' in options:
-            if record:
-                if options['insurance'] == 1:
-                    ins_price = options['insurance_price']
-                    _logger.warning(F'insurance price in request {ins_price}')
-                    insured_amount = record.x_aa_mp_insurance_pricelist_id.search(
-                        [('id', '=', options['insurance_price'].id)], limit=1)
-                    if insured_amount:
-                        insured_amount = int(insured_amount.x_aa_mp_insurance_selection)
-                    options['insurance'] = {
-                        "amount": insured_amount,
-                        "currency": record.currency_id.name or "EUR"
-                    }
-                    options.pop('insurance_price')
-                else:
-                    options.pop('insurance')
-                    options.pop('insurance_price')
-            else:
-                options.pop('insurance')
-                options.pop('insurance_price')
-
-        _logger.warning(F'options in body construction {options}')
+            options = self._get_insurance_price(record, options)
 
         shipments = {
             "reference_identifier": record.name,
@@ -316,10 +316,9 @@ class MyParcelRequest:
         }
 
         # Shipping weight
-        # TODO: Add height, length, width of product (Discuss if necessary)
         if options and 'weight' in options:
-            if options['weight'] == 0:
-                options['weight'] = 0.001  # MyParcel requires a minimum weight of 1 gram
+            if not options['weight'] or options['weight'] < 0.01:
+                options['weight'] = 0.01  # MyParcel requires a minimum weight of 10 grams
             shipping_weight = {
                 "weight": int(options['weight']) * 1000,
             }
@@ -371,25 +370,22 @@ class MyParcelRequest:
             options = {}
         url_api = self._get_url('add_shipments')
         headers = self._get_headers('add_shipments')
-        _logger.warning(F'carrier_id {self.carrier_id}')
 
         if recipient is None:
             recipient = record.partner_id
+            if not recipient:
+                raise ValidationError(_('No recipient found to create a shipment. Please check the delivery address.'))
 
         # Get the shipment body
         shipment_body = self.post_shipment_body(recipient=recipient, options=options, record=record,
                                                 carrier_code=carrier_code, carrier=self.carrier_id)
-
-        _logger.warning(F'url_api {url_api}')
-        _logger.warning(F'headers {headers}')
-        _logger.warning(F'shipment_body {shipment_body}')
 
         response = requests.post(url_api,
                                  data=json.dumps(shipment_body),
                                  headers=headers)
 
         json_response = response.json()
-        _logger.warning(F'response check {json_response}')
+        _logger.warning(F'response add shipping {json_response}')
 
         if json_response.get('errors'):
             error_msg = self._get_error_message(json_response),
@@ -403,11 +399,10 @@ class MyParcelRequest:
     def get_shipping(self, shipment_id):
         headers = self._get_headers('get_shipments')
         url_api = self._get_url('get_shipments', shipment_id)
-        _logger.warning(F'url_api {url_api}')
         response = requests.get(url_api, headers=headers)
 
         json_response = response.json()
-        _logger.warning(F'response check get {json_response}')
+        _logger.warning(F'response get shipping {json_response}')
 
         if json_response.get('errors'):
             error_msg = self._get_error_message(json_response),
@@ -445,11 +440,10 @@ class MyParcelRequest:
         if label_size and label_position:
             url_api += f'?format={label_size}&positions={label_position}'
 
-        _logger.warning(F'url_api {url_api}')
         response = requests.get(url_api, headers=headers)
 
         json_response = response.json()
-        _logger.warning(F'response check label {json_response}')
+        _logger.warning(F'response label {json_response}')
 
         if json_response.get('errors'):
             error_msg = self._get_error_message(json_response),
@@ -459,11 +453,6 @@ class MyParcelRequest:
     def track_trace(self, shipment_id):
         headers = self._get_headers('track_trace')
         url_api = self._get_url('track_trace', shipment_id)
-
-        _logger.warning(F'shipment_id {shipment_id}')
-
-        _logger.warning(F'url_api {url_api}')
-        _logger.warning(F'headers {headers}')
         response = requests.get(url_api, headers=headers)
 
         json_response = response.json()

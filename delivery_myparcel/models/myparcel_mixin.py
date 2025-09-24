@@ -21,7 +21,8 @@ class MyParcelMixin(models.AbstractModel):
     _description = "MyParcel Mixin"
 
     # Order shipment ID
-    x_aa_mp_shipping_id = fields.Char(string='MyParcel Shipment ID')
+    x_aa_mp_shipping_id = fields.Char(string='MyParcel Shipment ID', help='Necessary to generate related returns and '
+                                                                          'keep track of the ID given by MyParcel.')
 
     # Carrier settings
     x_aa_mp_age_control = fields.Boolean(string='Age Verification (18+)', default=False)
@@ -140,7 +141,11 @@ class MyParcelMixin(models.AbstractModel):
     @staticmethod
     def _get_package_type(carrier=None):
         if carrier:
-            package_type = int(carrier.x_aa_mp_package_type_id.shipper_package_code)
+            if carrier.x_aa_mp_package_type_id:
+                package_type = int(carrier.x_aa_mp_package_type_id.shipper_package_code)
+            else:
+                raise ValidationError(
+                    _('Package type needed for MyParcel/SendMyParcel carriers. Please check the carrier settings.'))
         else:
             package_type = 1
         _logger.warning(F'Package type is {package_type}')
@@ -154,9 +159,9 @@ class MyParcelMixin(models.AbstractModel):
             for option_key, context_key in fields:
                 order_or_carrier = order if order and order.carrier_id == carrier else carrier
                 if option_key == 'insurance_price' and options['insurance'] == 1:
-                    options[option_key] = self.env.context.get(context_key, getattr(order_or_carrier, context_key,
-                                                                                    False)) if self.env.context.get(
-                        context_key, getattr(order_or_carrier, context_key, False)) else 0
+                    options[option_key] = self.env.context.get(context_key,
+                        getattr(order_or_carrier, context_key, False)) if self.env.context.get(context_key,
+                        getattr(order_or_carrier, context_key, False)) else 0
                 else:
                     options[option_key] = 1 if self.env.context.get(context_key, getattr(order_or_carrier, context_key,
                                                                                          False)) else 0

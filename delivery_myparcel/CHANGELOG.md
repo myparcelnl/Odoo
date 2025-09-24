@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 
 * The module is currently still in development. New features/carriers are actively being implemented.
 
+## 2025-09-17 (18.0.0.4.0)
+
+### Added
+
+* Integration for SendMyParcel carrier: DPD
+* Integration for SendMyParcel carrier: Post NL
+* Integration for SendMyParcel carrier: Bpost
+* Delivery options dependent on platform of delivery (SendMyParcel/MyParcel)
+* Delivery options dependent on the delivery address' country
+
+### Updated
+
+* Minimum package weight is 10 grams if no shipping weight is set on the order
+
+
 ## 2025-08-20 (18.0.0.3.0)
 
 ### Added

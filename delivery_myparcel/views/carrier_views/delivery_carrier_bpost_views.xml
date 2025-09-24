@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_delivery_carrier_form_inherit_myparcel_bpost" model="ir.ui.view">
+            <field name="name">delivery.carrier.inherit.myparcel.bpost</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery_myparcel.view_delivery_carrier_form_inherit_myparcel"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='myparcel_carrier_settings']" position="inside">
+                    <group string="Package Settings" invisible="delivery_type != 'myparcel_bpost'">
+                        <field name="x_aa_mp_package_type_id" domain="[('package_carrier_type', '=', 'myparcel_bpost')]" />
+                    </group>
+                    <group string="Insurance" invisible="delivery_type != 'myparcel_bpost'" col="1" colspan="4">
+                        <group>
+                            <field name="x_aa_mp_insurance_pricelist_id" nolabel="1" colspan="2" domain="[('delivery_type', '=', 'myparcel_bpost')]">
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="x_aa_mp_insurance_selection"/>
+                                    <field name="delivery_type"/>
+                                    <field name="currency_id" string="Currency"/>
+                                    <field name="price" widget="monetary"/>
+                                </list>
+                            </field>
+                        </group>
+                    </group>
+                    <group string="Carrier settings: Bpost" invisible="delivery_type != 'myparcel_bpost'">
+                        <label for="x_aa_mp_signing"/>
+                        <div name="signing_price">
+                            <field name="x_aa_mp_signing"/>
+                            <field name="x_aa_mp_signing_price" widget="monetary" class="oe_inline"
+                                   invisible="not x_aa_mp_signing or x_aa_mp_delivery_price != 'fixed'"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

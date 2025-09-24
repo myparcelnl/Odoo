@@ -18,5 +18,6 @@ class StockPackageType(models.Model):
                                                            ('myparcel_postnl', 'MyParcel Post NL'),
                                                            ('myparcel_ups_standard', 'MyParcel UPS Standard'),
                                                            ('myparcel_ups_express', 'MyParcel UPS Express Saver'),
-                                                           ('myparcel_dpd', 'MyParcel DPD')])
-    # , ('myparcel_gls', 'MyParcel GLS')
+                                                           ('myparcel_dpd', 'MyParcel DPD'),
+                                                           ('myparcel_bpost', 'MyParcel Bpost')])
+                                                           # ('myparcel_gls', 'MyParcel GLS')

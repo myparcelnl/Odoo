@@ -16,9 +16,17 @@ class ChooseDeliveryCarrier(models.TransientModel):
     _inherit = ['choose.delivery.carrier', 'myparcel.mixin']
     _name = 'choose.delivery.carrier'
 
+    x_aa_mp_is_myparcel = fields.Boolean(related='carrier_id.x_aa_mp_is_myparcel')
+    x_aa_mp_is_sendmyparcel = fields.Boolean(related='carrier_id.x_aa_mp_is_sendmyparcel')
+
     carrier_message = fields.Text(compute='_compute_carrier_message')
 
     x_aa_mp_insurance_pricelist_id = fields.Many2one('myparcel.insurance.price', string='Price')
+
+    country_code = fields.Char(related='order_id.partner_shipping_id.country_id.code', string='Country Code',
+                               readonly=True)
+    european_country_code = fields.Boolean(related='order_id.partner_shipping_id.country_id.x_aa_mp_is_european',
+                                       string='Is European Country', readonly=True)
 
     commitment_date = fields.Datetime(related='order_id.commitment_date', string='Delivery Date', readonly=False)
 
@@ -37,7 +45,7 @@ class ChooseDeliveryCarrier(models.TransientModel):
                 'x_aa_mp_insurance_pricelist_id': self.order_id.x_aa_mp_insurance_pricelist_id,
                 'x_aa_mp_allow_sameday_delivery': self.order_id.x_aa_mp_allow_sameday_delivery,
             })
-        elif self.carrier_id and self.carrier_id.x_aa_mp_is_myparcel:
+        elif self.carrier_id and (self.carrier_id.x_aa_mp_is_myparcel or self.carrier_id.x_aa_mp_is_sendmyparcel):
             self.write({
                 'x_aa_mp_age_control': self.carrier_id.x_aa_mp_age_control,
                 'x_aa_mp_signing': self.carrier_id.x_aa_mp_signing,
@@ -80,7 +88,7 @@ class ChooseDeliveryCarrier(models.TransientModel):
         if self.order_id and self.order_id.carrier_id and self.order_id.carrier_id == self.carrier_id:
             if hasattr(self.carrier_id, '%s_check_option_combi' % self.carrier_id.delivery_type):
                 getattr(self.carrier_id, '%s_check_option_combi' % self.carrier_id.delivery_type)(wizard_id=self)
-        elif self.carrier_id and self.carrier_id.x_aa_mp_is_myparcel:
+        elif self.carrier_id and (self.carrier_id.x_aa_mp_is_myparcel or self.carrier_id.x_aa_mp_is_sendmyparcel):
             # self.carrier_id.check_option_combi(wizard_id=self)
             if hasattr(self.carrier_id, '%s_check_option_combi' % self.carrier_id.delivery_type):
                 getattr(self.carrier_id, '%s_check_option_combi' % self.carrier_id.delivery_type)(wizard_id=self)
