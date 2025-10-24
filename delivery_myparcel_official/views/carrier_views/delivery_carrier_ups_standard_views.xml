@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_delivery_carrier_form_inherit_myparcel_ups_standard" model="ir.ui.view">
+            <field name="name">delivery.carrier.inherit.myparcel.ups.standard</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery_myparcel_official.view_delivery_carrier_form_inherit_myparcel"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='myparcel_carrier_settings']" position="inside">
+                    <group string="Package Settings" invisible="delivery_type != 'myparcel_ups_standard'">
+                        <field name="x_aa_mp_package_type_id"
+                               domain="[('package_carrier_type', '=', 'myparcel_ups_standard')]"
+                               required="delivery_type == 'myparcel_ups_standard'"/>
+                    </group>
+                    <group string="Insurance" invisible="delivery_type != 'myparcel_ups_standard'" col="1" colspan="4">
+                        <group>
+                            <field name="x_aa_mp_insurance_pricelist_id" nolabel="1" colspan="2"
+                                   domain="[('delivery_type', '=', 'myparcel_ups_standard')]">
+                                <list editable="bottom">
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="x_aa_mp_insurance_selection"/>
+                                    <field name="currency_id" string="Currency"/>
+                                    <field name="price" widget="monetary"/>
+                                </list>
+                            </field>
+                        </group>
+                    </group>
+                    <group string="Carrier settings: UPS Standard" invisible="delivery_type != 'myparcel_ups_standard'">
+                        <field name="x_aa_mp_age_control"/>
+                        <field name="x_aa_mp_signing"/>
+                        <field name="x_aa_mp_only_receiver"/>
+                        <!--                        <field name="x_aa_mp_package_collection_carrier"/>-->
+                        <!--                        <field name="x_aa_mp_home_delivery"/>-->
+                        <label for="x_aa_mp_allow_standard_delivery"/>
+                        <div name="standard_delivery">
+                            <field name="x_aa_mp_allow_standard_delivery"/>
+                            <field name="x_aa_mp_standard_delivery_price" widget="monetary" class="oe_inline"
+                                   invisible="not x_aa_mp_allow_standard_delivery or x_aa_mp_delivery_price != 'fixed'"/>
+                        </div>
+                        <!--                        <label for="x_aa_mp_allow_morning_delivery"/>-->
+                        <!--                        <div name="morning_delivery">-->
+                        <!--                            <field name="x_aa_mp_allow_morning_delivery"/>-->
+                        <!--                            <field name="x_aa_mp_morning_delivery_price" widget="monetary" class="oe_inline"-->
+                        <!--                                   invisible="not x_aa_mp_allow_morning_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
+                        <!--                        </div>-->
+                        <!--                        <label for="x_aa_mp_allow_evening_delivery"/>-->
+                        <!--                        <div name="evening_delivery">-->
+                        <!--                            <field name="x_aa_mp_allow_evening_delivery"/>-->
+                        <!--                            <field name="x_aa_mp_evening_delivery_price" widget="monetary" class="oe_inline"-->
+                        <!--                                   invisible="not x_aa_mp_allow_evening_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
+                        <!--                        </div>-->
+                        <!--                        <label for="x_aa_mp_allow_monday_delivery"/>-->
+                        <!--                        <div name="monday_delivery">-->
+                        <!--                            <field name="x_aa_mp_allow_monday_delivery"/>-->
+                        <!--                            <field name="x_aa_mp_monday_delivery_price" widget="monetary" class="oe_inline"-->
+                        <!--                                   invisible="not x_aa_mp_allow_monday_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
+                        <!--                        </div>-->
+                        <!--                        <label for="x_aa_mp_allow_saturday_delivery"/>-->
+                        <!--                        <div name="saturday_delivery">-->
+                        <!--                            <field name="x_aa_mp_allow_saturday_delivery"/>-->
+                        <!--                            <field name="x_aa_mp_saturday_delivery_price" widget="monetary" class="oe_inline"-->
+                        <!--                                   invisible="not x_aa_mp_allow_saturday_delivery or x_aa_mp_delivery_price != 'fixed'"/>-->
+                        <!--                        </div>-->
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
