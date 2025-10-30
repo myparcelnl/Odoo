@@ -7,7 +7,7 @@
 ##############################################################################
 
 {
-    'name': 'MyParcel Shipping',
+    'name': 'MyParcel Shipping Official',
     'description': """
     Shipping integration with MyParcel platform.
     Note: this is a BETA version. Not all features are fully implemented yet.
