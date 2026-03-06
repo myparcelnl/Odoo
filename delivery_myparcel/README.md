@@ -1,2 +1,0 @@
-# MyParcel Shipping Integration
-# =========================
