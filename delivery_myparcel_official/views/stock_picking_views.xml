@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_stock_picking_form_inherit_myparcel" model="ir.ui.view">
+        <field name="name">view.stock.picking.form.inherit.myparcel</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+        <!--            <xpath expr="//header" position="inside">-->
+        <!--                <button name="action_send_to_myparcel" type="object" string="Send to MyParcel"/>-->
+        <!--                <button name="action_get_myparcel_label" type="object" string="Get MyParcel Label" invisible="state != 'done'"/>-->
+        <!--            </xpath>-->
+            <xpath expr="//page[@name='extra']" position="inside">
+                <group>
+                    <group string="MyParcel Settings" invisible="'myparcel' not in delivery_type">
+                        <field name="x_aa_mp_is_myparcel" invisible="1"/>
+                        <field name="x_aa_mp_is_sendmyparcel" invisible="1"/>
+                        <field name="x_aa_mp_label_url"/>
+                        <field name="x_aa_mp_age_control" invisible="delivery_type not in ['myparcel_postnl',
+                        'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy'] or x_aa_mp_is_sendmyparcel"/>
+                        <field name="x_aa_mp_signing" invisible="delivery_type not in ['myparcel_postnl',
+                        'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy', 'myparcel_dhl_europlus',
+                        'myparcel_gls', 'myparcel_bpost']"/>
+                        <field name="x_aa_mp_only_receiver" invisible="delivery_type not in ['myparcel_postnl',
+                        'myparcel_ups_standard', 'myparcel_ups_express', 'myparcel_dhl_fy']"/>
+                        <field name="x_aa_mp_receiving_code"
+                               invisible="delivery_type not in ['myparcel_postnl'] or
+                               country_code not in ['NL', 'BE']"/>
+                        <field name="x_aa_mp_large_package" invisible="delivery_type not in ['myparcel_postnl'] or
+                        european_country_code == False"/>
+                        <field name="x_aa_mp_direct_return" invisible="delivery_type not in ['myparcel_postnl']
+                        or x_aa_mp_is_sendmyparcel"/>
+                        <field name="x_aa_mp_hide_sender" invisible="delivery_type not in ['myparcel_dhl_fy',
+                        'myparcel_dhl_europlus']"/>
+                        <label for="x_aa_mp_insurance" invisible="delivery_type not in ['myparcel_postnl',
+                        'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard',
+                        'myparcel_ups_express']"/>
+                        <div name="x_aa_mp_insurance" invisible="delivery_type not in ['myparcel_postnl',
+                        'myparcel_dhl_fy', 'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_ups_standard',
+                        'myparcel_ups_express']">
+                            <field name="x_aa_mp_insurance"/>
+                            <span invisible="x_aa_mp_insurance == False" class="oe_inline">
+                                (<label for="x_aa_mp_insurance_pricelist_id"/>
+                                <field name="x_aa_mp_insurance_pricelist_id"
+                                       domain="[('carrier_id', '=', carrier_id)]"
+                                       class="oe_inline"
+                                       readonly="x_aa_mp_insurance != True"
+                                       required="x_aa_mp_insurance == True"
+                                       widget="selection"/>
+                                <field name="currency_id" readonly="1" class="oe_inline" options="{'no_open': 1}"/>)
+                            </span>
+                        </div>
+                        <field name="x_aa_mp_allow_sameday_delivery"
+                               invisible="delivery_type not in ['myparcel_dhl_fy']" readonly="1"/>
+                        <!--                        <field name="x_aa_mp_home_delivery" invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard', 'myparcel_dpd', 'myparcel_dhl_fy']"/>-->
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
