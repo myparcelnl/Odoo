@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_delivery_carrier_form_inherit_myparcel_gls" model="ir.ui.view">
+            <field name="name">delivery.carrier.inherit.myparcel.gls</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery_myparcel_official.view_delivery_carrier_form_inherit_myparcel"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='myparcel_carrier_settings']" position="inside">
+                    <group string="Package Settings" invisible="delivery_type != 'myparcel_gls'">
+                        <field name="x_aa_mp_package_type_id" domain="[('package_carrier_type', '=', 'myparcel_gls')]"/>
+                    </group>
+                    <group string="Carrier settings: GLS" invisible="delivery_type != 'myparcel_gls'">
+                        <label for="x_aa_mp_signing"/>
+                        <div name="signing_price">
+                            <field name="x_aa_mp_signing"/>
+                            <field name="x_aa_mp_signing_price" widget="monetary" class="oe_inline"
+                                   invisible="not x_aa_mp_signing or x_aa_mp_delivery_price != 'fixed'"/>
+                        </div>
+                        <label for="x_aa_mp_allow_saturday_delivery"/>
+                        <div name="saturday_delivery">
+                            <field name="x_aa_mp_allow_saturday_delivery"/>
+                            <field name="x_aa_mp_saturday_delivery_price" widget="monetary" class="oe_inline"
+                                   invisible="not x_aa_mp_allow_saturday_delivery or x_aa_mp_delivery_price != 'fixed'"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

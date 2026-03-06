@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_delivery_carrier_form_inherit_myparcel" model="ir.ui.view">
+            <field name="name">delivery.carrier.inherit.myparcel</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='description']" position="after">
+                    <page name="myparcel_settings" string="MyParcel Settings"
+                          invisible="delivery_type not in ['myparcel_postnl', 'myparcel_ups_standard',
+                          'myparcel_ups_express', 'myparcel_dpd', 'myparcel_bpost', 'myparcel_dhl_fy',
+                          'myparcel_dhl_connect', 'myparcel_dhl_europlus', 'myparcel_gls']">
+                        <group>
+                            <group string="General settings">
+                                <field name="x_aa_mp_api_key"/>
+                                <button name="action_check_myparcel_api"
+                                        string="MyParcel API CHECK"
+                                        type="object"
+                                        class="btn-primary"
+                                        icon="fa-plug"/>
+                            </group>
+                            <group string="Order settings">
+                                <!--                                <field name="x_aa_mp_ordermodus"/>-->
+                                <field name="x_aa_mp_email_send_with_shipment" readonly="delivery_type in ['myparcel_dpd']"/>
+                                <field name="x_aa_mp_phone_send_with_shipment"/>
+                            </group>
+                            <group string="Label settings">
+                                <field name="x_aa_mp_label_size" required="True"/>
+                                <field name="x_aa_mp_label_position" invisible="x_aa_mp_label_size != 'A4'"
+                                       required="x_aa_mp_label_size == 'A4'"/>
+                                <field name="x_aa_mp_direct_label"/>
+                            </group>
+                            <!--                            <group string="Customs settings">-->
+                            <!--                                <field name="x_aa_mp_package_type"/>-->
+                            <!--                            </group>-->
+                            <!--                            <group string="Checkout settings">-->
+                            <!--                                <field name="x_aa_mp_order_options"/>-->
+                            <!--                            </group>-->
+                            <group string="Pricing">
+                                <field name="x_aa_mp_delivery_price"/>
+                                <field name="x_aa_mp_fixed_price" widget="monetary"
+                                       string="Fixed Price"
+                                       invisible="x_aa_mp_delivery_price != 'fixed'"/>
+                            </group>
+                            <!--                            <group string="Other settings">-->
+                            <!--                                <field name="x_aa_mp_overige_settings"/>-->
+                            <!--                            </group>-->
+                        </group>
+                        <group name="myparcel_carrier_settings">
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
