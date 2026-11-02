@@ -7,6 +7,7 @@
 ##############################################################################
 
 from odoo import api, fields, models, _
+from datetime import datetime, timedelta
 import logging
 
 _logger = logging.getLogger()
@@ -100,8 +101,7 @@ class ChooseDeliveryCarrier(models.TransientModel):
                 if 'gls' in self.carrier_id.delivery_type:
                     self.carrier_message = _('Signature is always required outside the Netherlands for GLS deliveries.')
 
-    def _get_shipment_rate(self):
-        _logger.warning(F'insurance {self.x_aa_mp_insurance} - {self.x_aa_mp_insurance_pricelist_id}')
+    def _get_delivery_rate(self):
         self_context = self.with_context(x_aa_mp_age_control=self.x_aa_mp_age_control,
                                          x_aa_mp_signing=self.x_aa_mp_signing,
                                          x_aa_mp_only_receiver=self.x_aa_mp_only_receiver,
@@ -112,7 +112,12 @@ class ChooseDeliveryCarrier(models.TransientModel):
                                          x_aa_mp_insurance=self.x_aa_mp_insurance,
                                          x_aa_mp_insurance_pricelist_id=self.x_aa_mp_insurance_pricelist_id,
                                          x_aa_mp_allow_sameday_delivery=self.x_aa_mp_allow_sameday_delivery)
-        return super(ChooseDeliveryCarrier, self_context)._get_shipment_rate()
+        if self.commitment_date and self.commitment_date < datetime.now():
+            if self.x_aa_mp_allow_sameday_delivery:
+                self.commitment_date = datetime.now()
+            else:
+                self.commitment_date = datetime.now() + timedelta(days=1)
+        return super(ChooseDeliveryCarrier, self_context)._get_delivery_rate()
 
     def button_confirm(self):
         if not self.x_aa_mp_insurance:
