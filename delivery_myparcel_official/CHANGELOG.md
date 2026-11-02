@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 
 * The module is currently still in development. New features/carriers are actively being implemented.
 
+## 2026-09-09 (18.0.0.5.1)
+
+### Added
+
+### Updated
+
+* When expected date is in the past, don't throw exception. Instead take today + 1 day as the expected date.
+* Fix datetime formatting
+
+
 ## 2025-10-24 (18.0.0.5.0)
 
 ### Added
