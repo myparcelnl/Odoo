@@ -863,12 +863,6 @@ msgstr ""
 
 #. module: delivery_myparcel_official
 #. odoo-python
-#: code:addons/delivery_myparcel_official/models/sale.py:0
-msgid "Please set a future delivery date for the order."
-msgstr "Vul een toekomstige datum in voor deze order."
-
-#. module: delivery_myparcel_official
-#. odoo-python
 #: code:addons/delivery_myparcel_official/models/myparcel_request.py:0
 msgid ""
 "Postal code is required for creating a shipment. Please check the delivery "

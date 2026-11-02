@@ -36,11 +36,10 @@ class MyparcelInsurancePrice(models.Model):
         required=True,
     )
 
-    _sql_constraints = [
-        (
-            'unique_item_by_carrier', 'UNIQUE(name, carrier_id)',
-            'All amounts must be unique!')
-    ]
+    _unique_item_by_carrier = models.Constraint(
+        'UNIQUE(name, carrier_id)',
+        'All amounts must be unique!',
+    )
 
     @api.depends('x_aa_mp_insurance_selection')
     def _compute_name(self):

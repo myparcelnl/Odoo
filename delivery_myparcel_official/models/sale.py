@@ -8,7 +8,7 @@
 
 from odoo import models, fields, _
 from odoo.exceptions import ValidationError
-from datetime import date
+from datetime import datetime, date, timedelta
 import logging
 
 _logger = logging.getLogger()
@@ -32,17 +32,11 @@ class SaleOrder(models.Model):
 
     def get_delivery_date_for_myparcel_rate(self):
         if self.commitment_date and self.commitment_date.date() > date.today():
-            delivery_date = '{date} {time}'.format(**{
-                'date': self.commitment_date.date(),
-                'time': self.commitment_date.time(),
-            })
+            delivery_date = self.commitment_date.strftime('%Y-%m-%d %H:%M:%S')
         elif self.expected_date and self.expected_date.date() > date.today():
-            delivery_date = '{date} {time}'.format(**{
-                'date': self.expected_date.date(),
-                'time': self.expected_date.time(),
-            })
+            delivery_date = self.expected_date.strftime('%Y-%m-%d %H:%M:%S')
         else:
-            raise ValidationError(_("Please set a future delivery date for the order."))
+            delivery_date = (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')
         return delivery_date
 
     def set_delivery_line(self, carrier, amount):

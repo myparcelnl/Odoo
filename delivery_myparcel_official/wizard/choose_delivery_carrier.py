@@ -7,6 +7,7 @@
 ##############################################################################
 
 from odoo import api, fields, models, _
+from datetime import datetime, timedelta
 import logging
 
 _logger = logging.getLogger()
@@ -119,6 +120,11 @@ class ChooseDeliveryCarrier(models.TransientModel):
                                          x_aa_mp_insurance=self.x_aa_mp_insurance,
                                          x_aa_mp_insurance_pricelist_id=self.x_aa_mp_insurance_pricelist_id,
                                          x_aa_mp_allow_sameday_delivery=self.x_aa_mp_allow_sameday_delivery)
+        if self.commitment_date and self.commitment_date < datetime.now():
+            if self.x_aa_mp_allow_sameday_delivery:
+                self.commitment_date = datetime.now()
+            else:
+                self.commitment_date = datetime.now() + timedelta(days=1)
         return super(ChooseDeliveryCarrier, self_context)._get_delivery_rate()
 
     def button_confirm(self):
